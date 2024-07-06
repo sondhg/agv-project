@@ -1,0 +1,55 @@
+{
+  "orders-draft": [],
+  "orders-proceeded": [
+    {
+      "id": "d69b",
+      "vehicleCode": "McLaren",
+      "startPoint": "A",
+      "endPoint": "A",
+      "quickNote": "ton kin"
+    },
+    {
+      "id": "4f82",
+      "startPoint": "A",
+      "endPoint": "C",
+      "quickNote": "yolomen"
+    }
+  ],
+  "agv-parameters-display": [
+    {
+      "vehicle_code": "Pagani",
+      "Agv_speed": "30m/s",
+      "is_obstacle": "Yes",
+      "Agv_battery": "30%",
+      "previous_node": "A",
+      "next_node": "B",
+      "id": "c6ce"
+    },
+    {
+      "vehicle_code": "McLaren",
+      "Agv_speed": "100m/s",
+      "is_obstacle": "No",
+      "Agv_battery": "50%",
+      "previous_node": "C",
+      "next_node": "B",
+      "id": "b08b"
+    }
+  ],
+  "users": [],
+  "login": [
+    {
+      "id": "3aa9",
+      "email": "son@jojo.bro",
+      "password": "haha",
+      "delay": 5000
+    }
+  ],
+  "register": [
+    {
+      "id": "99d1",
+      "email": "testerman@yahoo.hust",
+      "password": "johnman",
+      "username": "cenaman"
+    }
+  ]
+}

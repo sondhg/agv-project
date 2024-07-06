@@ -1,0 +1,266 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+
+body {
+  background: rgb(3, 37, 50);
+  color: hsl(200, 100%, 90%);
+  max-width: 1200px;
+  padding: 1rem;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+a {
+  color: lightseagreen;
+}
+.white {
+  color: white;
+}
+.main-header {
+  color: white;
+  /* position: sticky; */
+  top: 0px;
+
+  .big-page-title {
+    text-align: center;
+    font: {
+      font-size: 2.2em;
+      font-family: "Rubik", sans-serif;
+    }
+    margin: 0.5em;
+  }
+  nav {
+    text-align: center;
+    font-size: 1em;
+    font-weight: 300;
+    /* border-bottom: 1px solid rgb(149, 151, 187); */
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    li {
+      display: inline;
+    }
+    a {
+      display: inline;
+      font: {
+        family: "Rubik", sans-serif;
+        weight: lighter;
+      }
+      padding: 1em;
+      margin-inline: 2em;
+      &:hover {
+        background-color: lightcyan;
+      }
+    }
+  }
+}
+
+
+select {
+  background: #2a2f3b;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px #2a2f3b solid;
+  padding: 1em;
+  min-width: 15em;
+  position: relative;
+  border-radius: 0.5em;
+  cursor: pointer;
+
+  &:hover {
+    background: #323749;
+    border-color: lightseagreen;
+  }
+}
+
+.pressed-btn {
+  min-width: 15em;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #04aa6d;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+  margin-block: 10px;
+
+  &:hover {
+    background-color: #3e8e41;
+  }
+  &:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+}
+.draft-btn {
+  background-color: rgb(196, 196, 43);
+  &:hover {
+    background-color: rgb(161, 161, 38);
+  }
+  &:active {
+    background-color: rgb(128, 128, 25);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+}
+.delete-btn {
+  background-color: red;
+  &:hover {
+    background-color: rgb(166, 38, 38);
+  }
+  &:active {
+    background-color: rgb(166, 38, 38);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+}
+
+/* .show-hide-btn {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  color: #ffffff;
+  border: none;
+  text-align: center;
+  padding: 10px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-block: 10px;
+
+  &:hover {
+    background-color: #a42d09;
+  }
+} */
+
+.show-hide-btn,
+.get-api-btn {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  color: #ffffff;
+  border: none;
+  text-align: center;
+  padding: 10px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-block: 10px;
+
+  &:hover {
+    background-color: #a42d09;
+  }
+
+  &:hover span {
+    padding-right: 25px;
+  }
+
+  &:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+  span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+
+    &:after {
+      content: "\00bb";
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+  }
+}
+
+.add-order-container,
+.display-data-container {
+  background-color: rgba(18, 5, 62, 0.176);
+  border-radius: 0.5em;
+  border: 1px solid lightseagreen;
+
+  padding: 2em;
+  margin: 0.5em 0;
+
+  .dropdowns-container {
+    display: flex;
+    justify-content: space-between;
+
+    .dropdown-box {
+      width: 320px;
+      height: 150px;
+    }
+  }
+}
+
+.display-order-container {
+  padding: 0 2em;
+  margin: 0.5em 0;
+  border-radius: 0.5em;
+  display: flex;
+  flex-direction: column; //sao đổi sang row mà vẫn hiện theo column??
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .display-order-box {
+    width: 400px;
+    height: 200px;
+    margin: 1em 0;
+    padding: 0 1em;
+    background-color: rgb(81, 81, 207);
+    border-radius: 0.5em;
+    text-align: left;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid lightseagreen;
+
+  th,
+  td {
+    text-align: left;
+    padding: 16px;
+  }
+
+  th {
+    background-color: lightseagreen;
+  }
+
+  tr:nth-child(even) {
+    background-color: #2a2f3b;
+  }
+}
+
+.footer {
+  margin-top:auto;
+  //display: flex;
+  height: 50px;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
