@@ -11,7 +11,7 @@ const ModalUpdateOrder = (props) => {
 
   const handleClose = () => {
     setShow(false);
-    setVehicleCode("McLaren");
+    setVehicleCode("AGV 1");
     setStartPoint("A");
     setEndPoint("A");
     setQuickNote("");
@@ -54,7 +54,6 @@ const ModalUpdateOrder = (props) => {
 
   return (
     <>
-      
       <Modal
         show={show}
         onHide={handleClose}
@@ -75,9 +74,10 @@ const ModalUpdateOrder = (props) => {
                 onChange={(event) => setVehicleCode(event.target.value)}
                 disabled //tương đương disabled={true}, tức ko cho phép thay đổi trường vehicleCode
               >
-                <option value="McLaren">McLaren</option>
-                <option value="Pagani">Pagani</option>
-                <option value="Bentley">Bentley</option>
+                <option value="AGV 1">AGV 1</option>
+                <option value="AGV 2">AGV 2</option>
+                <option value="AGV 3">AGV 3</option>
+                <option value="AGV 4">AGV 4</option>
               </select>
             </div>
             <div className="col-md-4">

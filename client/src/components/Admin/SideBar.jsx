@@ -71,6 +71,10 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
                 Real-time Data Display
                 <Link to="/admin/agv-params-display" />
               </MenuItem>
+              <MenuItem>
+                Websocket Display Bitcoin
+                <Link to="/admin/websocket-display-bitcoin" />
+              </MenuItem>
             </SubMenu>
           </Menu>
           <Menu iconShape="circle">

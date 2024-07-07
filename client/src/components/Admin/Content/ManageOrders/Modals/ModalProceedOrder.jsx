@@ -3,10 +3,13 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { proceedOrder, deleteOrder } from "../../../../../services/apiServices";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const ModalProceedOrder = (props) => {
   const { show, setShow, dataProceed } = props;
   const handleClose = () => setShow(false);
+  const navigate = useNavigate();
+
   const handleSubmitProceedOrder = async () => {
     let data = await (proceedOrder(dataProceed), deleteOrder(dataProceed.id));
 
@@ -14,6 +17,7 @@ const ModalProceedOrder = (props) => {
       toast.success("Order sent to AGV!");
       handleClose();
       await props.fetchListOrders();
+      navigate("/admin/agv-params-display");
     }
   };
 

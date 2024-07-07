@@ -26,7 +26,7 @@ const Header = () => {
 
   const handleLogOut = async () => {
     let res = await logout(account.email, account.refresh_token);
-    if (res && res.EC === 0) {
+    if (res /* && res.EC === 0 */) {
       //need to clear data redux
       dispatch(doLogout());
       navigate("/login");

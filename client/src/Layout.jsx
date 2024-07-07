@@ -12,6 +12,9 @@ import ManageDisplayAgvParams from "./components/Admin/Content/Display/ManageDis
 import Login from "./components/Auth/Login.jsx";
 import Register from "./components/Auth/Register.jsx";
 import ManageUser from "./components/Admin/Content/ManageUsers/ManageUser.jsx";
+import ManageDashboard from "./components/Admin/Content/Dashboard/ManageDashboard.jsx";
+import WebSocketDisplay from "./components/Admin/Content/Display/WebSocketDisplay.jsx";
+import WebSocketDisplayBitcoin from "./components/Admin/Content/Display/WebSocketDisplay.jsx";
 const Layout = (props) => {
   return (
     <>
@@ -23,7 +26,7 @@ const Layout = (props) => {
 
           <Route path="/admin" element={<Admin />}>
             {/* 3 route dưới là cho AGV */}
-            <Route index element={<DashBoard />} />
+            <Route index element={<ManageDashboard />} />
             <Route path="manage-orders" element={<ManageOrder />} />
             <Route
               path="agv-params-display"
@@ -31,11 +34,14 @@ const Layout = (props) => {
             />
             {/* Route dưới là cho Accounts */}
             <Route path="manage-users" element={<ManageUser />} />
+            <Route
+              path="websocket-display-bitcoin"
+              element={<WebSocketDisplayBitcoin />}
+            ></Route>
           </Route>
 
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
-
         </Route>
       </Routes>
 

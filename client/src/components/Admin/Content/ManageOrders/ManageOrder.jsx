@@ -29,12 +29,6 @@ const ManageOrder = (props) => {
     setListOrders(res); //xem database để đặt thêm sau res
   };
 
-  const fetchListOrdersWithPaginate = async (page) => {
-    let res = await getOrderWithPaginate(page, LIMIT_ORDER);
-    console.log(">>> res: ", res);
-    setListOrders(res); //xem database để đặt thêm sau res
-  };
-
   const handleClickBtnProceed = (order) => {
     setShowModalProceedOrder(true);
     setDataProceed(order);
@@ -79,12 +73,6 @@ const ManageOrder = (props) => {
             handleClickBtnDelete={handleClickBtnDelete}
             handleClickBtnProceed={handleClickBtnProceed}
           />
-          {/* <TableOrdersPaginate
-            listOrders={listOrders}
-            handleClickBtnUpdate={handleClickBtnUpdate}
-            handleClickBtnDelete={handleClickBtnDelete}
-            handleClickBtnProceed={handleClickBtnProceed}
-          /> */}
         </div>
         <ModalCreateOrder
           show={showModalCreateOrder}
