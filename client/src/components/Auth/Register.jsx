@@ -51,7 +51,7 @@ const Register = (props) => {
         }
     }
     return (
-        <div className="register-container">
+        <div className="register-container bg-light-subtle text-dark">
             <div className='header'>
                 <span> Already have an account?</span>
                 <button onClick={() => navigate('/login')}>Log in</button>

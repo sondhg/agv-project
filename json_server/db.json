@@ -1,5 +1,13 @@
 {
-  "orders-draft": [],
+  "orders-draft": [
+    {
+      "id": "3878",
+      "vehicleCode": "AGV 1",
+      "startPoint": "B",
+      "endPoint": "C",
+      "quickNote": "demo thử"
+    }
+  ],
   "orders-proceeded": [],
   "agv-parameters-display": [
     {

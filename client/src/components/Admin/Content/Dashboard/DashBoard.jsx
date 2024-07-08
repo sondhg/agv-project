@@ -1,86 +1,100 @@
-import "./Dashboard.scss";
+import React, { useEffect, useRef, useState } from "react";
+import useWebSocket, { ReadyState } from "react-use-websocket";
 
-// const DashBoard = (props) => {
-//   return (
-//     <div className="dashboard-container">
-//       <div className="title">Analytics Dashboard</div>
-//       <div className="content">
-//         <div className="c-left">
-//           <div className="child">
-//             <span className="text-1">Total Draft Orders</span>
-//             <span className="text-2">14</span>
-//           </div>
-//           <div className="child">
-//             <span className="text-1">Total Proceeded Orders</span>
-//             <span className="text-2">3</span>
-//           </div>
+import { IoIosSpeedometer } from "react-icons/io";
+import { IoIosWarning } from "react-icons/io";
+import { FaBatteryHalf } from "react-icons/fa";
+import { GiPathDistance } from "react-icons/gi";
+import { FaCar } from "react-icons/fa";
 
-//         </div>
-//         <div className="c-right"></div>
-//       </div>
-//     </div>
-//   );
-// };
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { LineChart, XAxis, CartesianGrid, Tooltip, Line } from "recharts";
 
-// export default DashBoard;
+import MyCard from "./components/MyCard";
 
-import * as React from "react";
-import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+const Dashboard = () => {
+  const [socketUrl, setSocketUrl] = useState(
+    "wss://stream.binance.com:9443/ws/btcusdt@trade"
+  );
+  const [data, setData] = useState([]);
 
-const DashBoard = (props) => {
-  const { listDisplayAgvParams } = props;
+  const { lastJsonMessage, readyState, lastMessage } = useWebSocket(socketUrl, {
+    onOpen: () => console.log("socket-connected"),
+    share: false,
+    shouldReconnect: () => true,
+  });
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
+  const connectionStatus = {
+    [ReadyState.CONNECTING]: "Connecting",
+    [ReadyState.OPEN]: "Open",
+    [ReadyState.CLOSING]: "Closing",
+    [ReadyState.CLOSED]: "Closed",
+    [ReadyState.UNINSTANTIATED]: "Uninstantiated",
+  }[readyState];
+
+  useEffect(() => {
+    if (lastJsonMessage) {
+      setData({
+        price: lastJsonMessage.p,
+        time: lastJsonMessage.t,
+      });
+    }
+  }, [lastJsonMessage]);
 
   return (
-    <div className="dashboard-container">
-      <div className="title">Analytics Dashboard</div>
-      <div className="content">
-        {listDisplayAgvParams &&
-          listDisplayAgvParams.length > 0 &&
-          listDisplayAgvParams.map((item, index) => {
-            return (
-              <div>
-                <Stack direction="row" spacing={2}>
-                  <div className="title">AGV {item.vehicle_code}</div>
-                  <Card variant="outlined">
-                    <CardContent>
-                      <Typography variant="h5" component="div">
-                        Speed
-                      </Typography>
-                      <Typography variant="body2">{item.Agv_speed}</Typography>
-                    </CardContent>
-                  </Card>
-                  <Card variant="outlined">
-                    <CardContent>
-                      <Typography variant="h5" component="div">
-                      Obstacle detected:
-                      </Typography>
-                      <Typography variant="body2">{item.is_obstacle}</Typography>
-                    </CardContent>
-                  </Card>
-                </Stack>
-              </div>
-            );
-          })}
-        {/* graph */}
+    <div>
+      {/* <div>The WebSocket is currently {connectionStatus}</div>
+      {lastMessage ? <div>Last message: {lastMessage.data}</div> : null}
+      {lastJsonMessage? <div>Last JSON message for PRICE: {lastJsonMessage.p}</div> : null} */}
+      <div>
+        <Container
+          className="border border-2 rounded border-dark-subtle p-3 mt-4 bg-secondary text-white"
+          style={{ width: "60rem" }}
+        >
+          <Row>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <FaCar size={25} />
+              <span className="ms-2">
+                <h4>AGV 1</h4>
+              </span>
+            </div>
+          </Row>
+          <Row xs={1} md={4}>
+            <MyCard
+              title="Speed"
+              dataDisplay={`${data.price} m/s`}
+              icon={<IoIosSpeedometer />}
+              bg="primary"
+              text="white"
+            />
+            <MyCard
+              title="Obstacle detected"
+              dataDisplay={data.time}
+              icon={<IoIosWarning />}
+              bg="danger"
+              text="white"
+            />
+            <MyCard
+              title="Battery"
+              dataDisplay={data.time}
+              icon={<FaBatteryHalf />}
+              bg="success"
+              text="white"
+            />
+            <MyCard
+              title="Distance traveled"
+              dataDisplay={data.time}
+              icon={<GiPathDistance />}
+              bg="info"
+              text="white"
+            />
+          </Row>
+        </Container>
       </div>
     </div>
   );
 };
 
-export default DashBoard;
+export default Dashboard;
