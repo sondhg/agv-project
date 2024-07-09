@@ -11,16 +11,19 @@ const ModalUpdateOrder = (props) => {
 
   const handleClose = () => {
     setShow(false);
-    setVehicleCode("AGV 1");
+    setVehicleCode("1");
     setStartPoint("A");
     setEndPoint("A");
+    setLoadAmount(0);
     setQuickNote("");
   };
 
-  const [vehicleCode, setVehicleCode] = useState("McLaren");
+  const [vehicleCode, setVehicleCode] = useState("1");
   const [startPoint, setStartPoint] = useState("A");
   const [endPoint, setEndPoint] = useState("A");
+  const [loadAmount, setLoadAmount] = useState(0);
   const [quickNote, setQuickNote] = useState("");
+
   //const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
@@ -29,6 +32,7 @@ const ModalUpdateOrder = (props) => {
       setVehicleCode(dataUpdate.vehicleCode);
       setStartPoint(dataUpdate.startPoint);
       setEndPoint(dataUpdate.endPoint);
+      setLoadAmount(dataUpdate.loadAmount);
       setQuickNote(dataUpdate.quickNote);
     }
   }, [props.dataUpdate]);
@@ -38,8 +42,10 @@ const ModalUpdateOrder = (props) => {
 
     let data = await putUpdateOrder(
       dataUpdate.id,
+      vehicleCode,
       startPoint,
       endPoint,
+      loadAmount,
       quickNote
     );
     //cần phần headers thì mới chạy đc, vì json-server của mình ko hoạt động với formdata giống video
@@ -72,12 +78,12 @@ const ModalUpdateOrder = (props) => {
                 className="form-select"
                 value={vehicleCode}
                 onChange={(event) => setVehicleCode(event.target.value)}
-                disabled //tương đương disabled={true}, tức ko cho phép thay đổi trường vehicleCode
+                // disabled //tương đương disabled={true}, tức ko cho phép thay đổi trường vehicleCode
               >
-                <option value="AGV 1">AGV 1</option>
-                <option value="AGV 2">AGV 2</option>
-                <option value="AGV 3">AGV 3</option>
-                <option value="AGV 4">AGV 4</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
               </select>
             </div>
             <div className="col-md-4">
@@ -105,6 +111,15 @@ const ModalUpdateOrder = (props) => {
                 <option value="C">C</option>
                 <option value="D">D</option>
               </select>
+            </div>
+            <div className="col-md-6">
+              <label className="form-label">Load amount (kilograms)</label>
+              <input
+                type="number"
+                className="form-control"
+                value={loadAmount}
+                onChange={(event) => setLoadAmount(event.target.value)}
+              />
             </div>
             <div className="col-md-6">
               <label className="form-label">Quick note</label>

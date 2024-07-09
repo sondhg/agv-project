@@ -1,4 +1,4 @@
-import Table from 'react-bootstrap/Table';
+import Table from "react-bootstrap/Table";
 const TableOrders = (props) => {
   const { listOrders } = props; //giống const listOrders = props.listOrders
 
@@ -11,6 +11,7 @@ const TableOrders = (props) => {
             <th scope="col">Vehicle code</th>
             <th scope="col">Start point</th>
             <th scope="col">End point</th>
+            <th scope="col">Load amount</th>
             <th scope="col">Quick note</th>
             <th>Action</th>
           </tr>
@@ -25,9 +26,10 @@ const TableOrders = (props) => {
                   <td>{item.vehicleCode}</td>
                   <td>{item.startPoint}</td>
                   <td>{item.endPoint}</td>
+                  <td>{item.loadAmount}</td>
                   <td>{item.quickNote}</td>
                   <td>
-                  <button
+                    <button
                       className="btn btn-success"
                       onClick={() => props.handleClickBtnProceed(item)}
                     >
@@ -45,14 +47,13 @@ const TableOrders = (props) => {
                     >
                       Delete
                     </button>
-                    
                   </td>
                 </tr>
               );
             })}
           {listOrders && listOrders.length === 0 && (
             <tr>
-              <td colSpan={"6"}>Data not found</td>
+              <td colSpan={"7"}>Data not found</td>
             </tr>
           )}
         </tbody>

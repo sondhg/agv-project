@@ -1,9 +1,16 @@
 import axios from "../utils/axiosCustomize"; //axios này là hàm instance, cách đặt tên ko quan trọng
-const postCreateNewOrder = (vehicleCode, startPoint, endPoint, quickNote) => {
+const postCreateNewOrder = (
+  vehicleCode,
+  startPoint,
+  endPoint,
+  loadAmount,
+  quickNote
+) => {
   const form = new FormData();
   form.append("vehicleCode", vehicleCode);
   form.append("startPoint", startPoint);
   form.append("endPoint", endPoint);
+  form.append("loadAmount", loadAmount);
   form.append("quickNote", quickNote);
 
   //order-draft là viết tắt của http://localhost:8000/orders-draft nhờ axiosCustomize.jsx
@@ -19,13 +26,15 @@ const getAllOrders = () => {
   return axios.get("/orders-draft");
 };
 
-const putUpdateOrder = (id, startPoint, endPoint, quickNote) => {
+const putUpdateOrder = (id, vehicleCode, startPoint, endPoint, loadAmount, quickNote) => {
   const form = new FormData();
   //ko truyền vehicleCode vào props vì ta ko muốn người dùng edit trường đó khi update
   //cần truyền biến id để biết đang xét order nào
   form.append("id", id);
+  form.append("vehicleCode", vehicleCode);
   form.append("startPoint", startPoint);
   form.append("endPoint", endPoint);
+  form.append("loadAmount", loadAmount);
   form.append("quickNote", quickNote);
 
   return axios.put(`/orders-draft/${id}`, form, {

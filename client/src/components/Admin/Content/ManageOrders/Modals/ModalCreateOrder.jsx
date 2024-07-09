@@ -10,16 +10,18 @@ const ModalCreateOrder = (props) => {
 
   const handleClose = () => {
     setShow(false);
-    setVehicleCode("AGV 1");
+    setVehicleCode("1");
     setStartPoint("A");
     setEndPoint("A");
+    setLoadAmount(0);
     setQuickNote("");
   };
 
-  const [vehicleCode, setVehicleCode] = useState("McLaren");
+  const [vehicleCode, setVehicleCode] = useState("1");
   const [startPoint, setStartPoint] = useState("A");
   const [endPoint, setEndPoint] = useState("A");
   const [quickNote, setQuickNote] = useState("");
+  const [loadAmount, setLoadAmount] = useState(0);
 
   const handleSubmitCreateOrder = async () => {
     //validate: mai làm sau
@@ -32,6 +34,7 @@ const ModalCreateOrder = (props) => {
       vehicleCode,
       startPoint,
       endPoint,
+      loadAmount,
       quickNote
     );
 
@@ -69,10 +72,10 @@ const ModalCreateOrder = (props) => {
                 value={vehicleCode}
                 onChange={(event) => setVehicleCode(event.target.value)}
               >
-                <option value="AGV 1">AGV 1</option>
-                <option value="AGV 2">AGV 2</option>
-                <option value="AGV 3">AGV 3</option>
-                <option value="AGV 4">AGV 4</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
               </select>
             </div>
             <div className="col-md-4">
@@ -100,6 +103,15 @@ const ModalCreateOrder = (props) => {
                 <option value="C">C</option>
                 <option value="D">D</option>
               </select>
+            </div>
+            <div className="col-md-6">
+              <label className="form-label">Load amount (kilograms)</label>
+              <input
+                type="number"
+                className="form-control"
+                value={loadAmount}
+                onChange={(event) => setLoadAmount(event.target.value)}
+              />
             </div>
             <div className="col-md-6">
               <label className="form-label">Quick note</label>
