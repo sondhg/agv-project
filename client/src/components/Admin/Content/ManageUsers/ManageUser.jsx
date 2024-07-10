@@ -36,21 +36,27 @@ const ManageUser = (props) => {
     setDataDelete(user);
   };
 
+  const resetUpdateUser = () => {
+    setDataUpdate({});
+  };
+
   useEffect(() => {
     fetchListUsers();
   }, []);
 
   return (
     <div className="manage-user-container">
-      <div className="title">Manage User</div>
+      <h3>Manage User</h3>
       <div className="users-content">
         <div className="btn-add-new">
           <button
             className="btn btn-primary"
             onClick={() => setShowModalCreateUser(true)}
           >
-            <FcPlus />
-            Add new user
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <FcPlus size={25} />
+              <span className="ms-2">Add new user</span>
+            </div>
           </button>
         </div>
         <div className="table-users-container">
@@ -70,6 +76,7 @@ const ManageUser = (props) => {
           setShow={setShowModalUpdateUser}
           dataUpdate={dataUpdate}
           fetchListUsers={fetchListUsers}
+          resetUpdateUser={resetUpdateUser}
         />
         <ModalDeleteUser
           show={showModalDeleteUser}

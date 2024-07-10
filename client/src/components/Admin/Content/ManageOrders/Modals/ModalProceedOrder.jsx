@@ -54,6 +54,14 @@ const ModalProceedOrder = (props) => {
               </b>{" "}
             </li>
             <li>
+              Load amount:{" "}
+              <b>
+                {dataProceed && dataProceed.loadAmount
+                  ? dataProceed.loadAmount
+                  : ""}
+              </b>{" "}
+            </li>
+            <li>
               Quick note:{" "}
               <b>
                 {dataProceed && dataProceed.quickNote

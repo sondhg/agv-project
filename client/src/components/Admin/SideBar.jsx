@@ -12,6 +12,7 @@ import {
   // Typography,
 } from "react-pro-sidebar";
 import { FaList, FaGithub } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
 import { MdDashboard, MdManageAccounts } from "react-icons/md";
 import { Link } from "react-router-dom";
 
@@ -166,7 +167,12 @@ const SideBar = ({ collapsed }) => {
             </div>
             <Menu menuItemStyles={menuItemStyles}>
               <MenuItem component={<Link to="/" />}>
-                <h6>Back to Home page</h6>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <FaHome />
+                  <span className="ms-2">
+                    <b>Back to Home</b>
+                  </span>
+                </div>
               </MenuItem>
               <MenuItem
                 icon={<MdDashboard />}
@@ -178,9 +184,6 @@ const SideBar = ({ collapsed }) => {
               <SubMenu icon={<FaList />} label="Orders">
                 <MenuItem component={<Link to="/admin/manage-orders" />}>
                   Manage Orders
-                </MenuItem>
-                <MenuItem component={<Link to="/admin/agv-params-display" />}>
-                  Real-time Data Display
                 </MenuItem>
               </SubMenu>
               <SubMenu icon={<MdManageAccounts />} label="Users">

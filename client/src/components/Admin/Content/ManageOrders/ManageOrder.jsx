@@ -12,7 +12,6 @@ import ModalProceedOrder from "./Modals/ModalProceedOrder";
 const ManageOrder = (props) => {
   const LIMIT_ORDER = 6;
   const [showModalCreateOrder, setShowModalCreateOrder] = useState(false);
-
   const [showModalUpdateOrder, setShowModalUpdateOrder] = useState(false);
   const [showModalDeleteOrder, setShowModalDeleteOrder] = useState(false);
   const [showModalProceedOrder, setShowModalProceedOrder] = useState(false);
@@ -47,25 +46,30 @@ const ManageOrder = (props) => {
     setDataDelete(order);
   };
 
+  const resetUpdateData = () => {
+    setDataUpdate({});
+  };
+
   useEffect(() => {
     fetchListOrders();
-    //fetchListOrdersWithPaginate(1);
-    //dùng TableOrdersPaginate thì hẵng off comment
   }, []);
 
   return (
     <div className="manage-order-container">
-      <div className="title">Manage Order</div>
+      <h3>Manage Order</h3>
       <div className="orders-content">
         <div className="btn-add-new">
           <button
             className="btn btn-primary"
             onClick={() => setShowModalCreateOrder(true)}
           >
-            <FcPlus />
-            Add new order
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <FcPlus size={25} />
+              <span className="ms-2">Add new order</span>
+            </div>
           </button>
         </div>
+
         <div className="table-orders-container">
           <TableOrders
             listOrders={listOrders}
@@ -84,6 +88,7 @@ const ManageOrder = (props) => {
           setShow={setShowModalUpdateOrder}
           dataUpdate={dataUpdate}
           fetchListOrders={fetchListOrders}
+          resetUpdateData={resetUpdateData}
         />
         <ModalDeleteOrder
           show={showModalDeleteOrder}

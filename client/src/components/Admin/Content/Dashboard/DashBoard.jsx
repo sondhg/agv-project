@@ -48,6 +48,7 @@ const Dashboard = () => {
       {/* <div>The WebSocket is currently {connectionStatus}</div>
       {lastMessage ? <div>Last message: {lastMessage.data}</div> : null}
       {lastJsonMessage? <div>Last JSON message for PRICE: {lastJsonMessage.p}</div> : null} */}
+      <h3>WebSocket Dashboard</h3>
       <div>
         <Container
           className="border border-2 rounded border-dark-subtle p-3 mt-4 bg-secondary text-white"

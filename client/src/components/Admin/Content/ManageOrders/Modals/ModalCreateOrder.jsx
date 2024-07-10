@@ -30,6 +30,11 @@ const ModalCreateOrder = (props) => {
       toast.warning("Adding a note is always recommended!");
     }
 
+    if (loadAmount < 0) {
+      toast.warning("Load amount must not be negative!");
+      return;
+    }
+
     let data = await postCreateNewOrder(
       vehicleCode,
       startPoint,

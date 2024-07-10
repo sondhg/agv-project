@@ -9,7 +9,7 @@ A. HƯỚNG DẪN KÉO CODE:
 
 - Mở 1 terminal, nhập lần lượt các lệnh: cd client --> npm i
 - Mở 1 terminal nữa, nhập lần lượt các lệnh: cd json_server --> npm i
-  Tải xong có thể đóng các terminal này
+- Tải xong có thể đóng các terminal này
 
 B. CÁCH CHẠY UI SAU KHI CLONE CODE VỀ:
 
@@ -39,21 +39,7 @@ D. Note về API và WebSocket
 - Các tác vụ API tôi để ở file: client/src/services/apiServices.jsx
 - WebSocket: ở file client/src/components/Admin/Content/Dashboard/Dashboard.jsx, đây cũng là file dùng hiển thị bảng dữ liệu
 
-E. Hình ảnh các trang của web:
-
-- Home
-  ![alt text](image-3.png)
-- Login
-  ![alt text](image-4.png)
-- Register
-  ![alt text](image-5.png)
-- Admin (Dashboard)
-  ![alt text](image-6.png)
-- Manage Orders
-  ![alt text](image-7.png)
-  ![alt text](image-8.png)
-
-F. Tài liệu học:
+E. Tài liệu học:
 
 - Playlist học React:
   https://www.youtube.com/playlist?list=PLncHg6Kn2JT7QbvdNNAmQZLqWchnJEoH5

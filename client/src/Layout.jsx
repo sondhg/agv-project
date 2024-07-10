@@ -8,7 +8,6 @@ import Home from "./components/Home/Home.jsx";
 import ManageOrder from "./components/Admin/Content/ManageOrders/ManageOrder.jsx";
 import Admin from "./components/Admin/Admin.jsx";
 import DashBoard from "./components/Admin/Content/Dashboard/DashBoard.jsx";
-import ManageDisplayAgvParams from "./components/Admin/Content/Display/ManageDisplayAgvParams.jsx";
 import Login from "./components/Auth/Login.jsx";
 import Register from "./components/Auth/Register.jsx";
 import ManageUser from "./components/Admin/Content/ManageUsers/ManageUser.jsx";
@@ -26,10 +25,7 @@ const Layout = (props) => {
             <Route index element={<DashBoard />} />
 
             <Route path="manage-orders" element={<ManageOrder />} />
-            <Route
-              path="agv-params-display"
-              element={<ManageDisplayAgvParams />}
-            />
+
             {/* Route dưới là cho Accounts */}
             <Route path="manage-users" element={<ManageUser />} />
           </Route>

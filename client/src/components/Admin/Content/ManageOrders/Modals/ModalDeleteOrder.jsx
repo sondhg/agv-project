@@ -50,6 +50,14 @@ const ModalDeleteOrder = (props) => {
               </b>{" "}
             </li>
             <li>
+              Load amount:{" "}
+              <b>
+                {dataDelete && dataDelete.loadAmount
+                  ? dataDelete.loadAmount
+                  : ""}
+              </b>{" "}
+            </li>
+            <li>
               Quick note:{" "}
               <b>
                 {dataDelete && dataDelete.quickNote ? dataDelete.quickNote : ""}

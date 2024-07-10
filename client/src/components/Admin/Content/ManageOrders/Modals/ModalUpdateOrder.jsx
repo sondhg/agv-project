@@ -16,6 +16,7 @@ const ModalUpdateOrder = (props) => {
     setEndPoint("A");
     setLoadAmount(0);
     setQuickNote("");
+    props.resetUpdateData();
   };
 
   const [vehicleCode, setVehicleCode] = useState("1");
@@ -48,7 +49,6 @@ const ModalUpdateOrder = (props) => {
       loadAmount,
       quickNote
     );
-    //cần phần headers thì mới chạy đc, vì json-server của mình ko hoạt động với formdata giống video
     if (data) {
       //chưa có validate
 

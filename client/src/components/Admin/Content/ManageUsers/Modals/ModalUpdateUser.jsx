@@ -15,6 +15,7 @@ const ModalUpdateUser = (props) => {
     setPassword("A");
     setUsername("A");
     setRole("");
+    props.resetUpdateUser();
   };
 
   const [email, setEmail] = useState("");
