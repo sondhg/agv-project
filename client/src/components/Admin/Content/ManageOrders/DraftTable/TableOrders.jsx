@@ -24,9 +24,9 @@ const TableOrders = (props) => {
                 <tr key={`table-orders-${index}`}>
                   <td>{index + 1}</td>
                   <td>{item.vehicle_id}</td>
-                  <td>{item.previous_node}</td>
-                  <td>{item.next_node}</td>
-                  <td>{item.load_amount}</td>
+                  <td>Node {item.previous_node}</td>
+                  <td>Node {item.next_node}</td>
+                  <td>{item.load_amount} kg</td>
                   <td>{item.quick_note}</td>
                   <td>
                     <button

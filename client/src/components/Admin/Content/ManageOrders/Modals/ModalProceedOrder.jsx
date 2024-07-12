@@ -14,6 +14,7 @@ const ModalProceedOrder = (props) => {
     let data = await (proceedOrder(dataProceed), deleteOrder(dataProceed.id));
 
     if (data) {
+      console.log(">>>data is: ", data);
       toast.success("Order sent to AGV!");
       handleClose();
       await props.fetchListOrders();

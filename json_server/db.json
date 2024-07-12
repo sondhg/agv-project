@@ -1,19 +1,19 @@
 {
-  "orders-draft": [],
-  "orders-proceeded": [
+  "orders-draft": [
     {
-      "id": "c7f8",
-      "vehicle_id": "2",
-      "previous_node": "4",
-      "next_node": "3",
-      "load_amount": "1",
-      "quick_note": "awesome",
+      "id": "4b85",
+      "vehicle_id": "1",
+      "previous_node": "1",
+      "next_node": "4",
+      "load_amount": "5",
+      "quick_note": "",
       "is_active": "true",
       "connected": "true",
       "vehicle_model": "Model X",
       "guidance_type": "Optical Tape"
     }
   ],
+  "orders-proceeded": [],
   "agv-parameters-display": [],
   "users": [],
   "login": [],
