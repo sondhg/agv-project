@@ -30,37 +30,39 @@ const ModalDeleteOrder = (props) => {
             <li>
               Vehicle code:{" "}
               <b>
-                {dataDelete && dataDelete.vehicleCode
-                  ? dataDelete.vehicleCode
+                {dataDelete && dataDelete.vehicle_id
+                  ? dataDelete.vehicle_id
                   : ""}
               </b>{" "}
             </li>
             <li>
               Start point:{" "}
               <b>
-                {dataDelete && dataDelete.startPoint
-                  ? dataDelete.startPoint
+                {dataDelete && dataDelete.previous_node
+                  ? dataDelete.previous_node
                   : ""}
               </b>{" "}
             </li>
             <li>
               End point:{" "}
               <b>
-                {dataDelete && dataDelete.endPoint ? dataDelete.endPoint : ""}
+                {dataDelete && dataDelete.next_node ? dataDelete.next_node : ""}
               </b>{" "}
             </li>
             <li>
               Load amount:{" "}
               <b>
-                {dataDelete && dataDelete.loadAmount
-                  ? dataDelete.loadAmount
+                {dataDelete && dataDelete.load_amount
+                  ? dataDelete.load_amount
                   : ""}
               </b>{" "}
             </li>
             <li>
               Quick note:{" "}
               <b>
-                {dataDelete && dataDelete.quickNote ? dataDelete.quickNote : ""}
+                {dataDelete && dataDelete.quick_note
+                  ? dataDelete.quick_note
+                  : ""}
               </b>{" "}
             </li>
           </ul>

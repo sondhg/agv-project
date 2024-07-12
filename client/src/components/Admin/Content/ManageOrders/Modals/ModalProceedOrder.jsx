@@ -17,7 +17,7 @@ const ModalProceedOrder = (props) => {
       toast.success("Order sent to AGV!");
       handleClose();
       await props.fetchListOrders();
-      navigate("/admin/agv-params-display");
+      navigate("/admin");
     }
   };
 
@@ -32,40 +32,40 @@ const ModalProceedOrder = (props) => {
             <li>
               Vehicle code:{" "}
               <b>
-                {dataProceed && dataProceed.vehicleCode
-                  ? dataProceed.vehicleCode
+                {dataProceed && dataProceed.vehicle_id
+                  ? dataProceed.vehicle_id
                   : ""}
               </b>{" "}
             </li>
             <li>
               Start point:{" "}
               <b>
-                {dataProceed && dataProceed.startPoint
-                  ? dataProceed.startPoint
+                {dataProceed && dataProceed.previous_node
+                  ? dataProceed.previous_node
                   : ""}
               </b>{" "}
             </li>
             <li>
               End point:{" "}
               <b>
-                {dataProceed && dataProceed.endPoint
-                  ? dataProceed.endPoint
+                {dataProceed && dataProceed.next_node
+                  ? dataProceed.next_node
                   : ""}
               </b>{" "}
             </li>
             <li>
               Load amount:{" "}
               <b>
-                {dataProceed && dataProceed.loadAmount
-                  ? dataProceed.loadAmount
+                {dataProceed && dataProceed.load_amount
+                  ? dataProceed.load_amount
                   : ""}
               </b>{" "}
             </li>
             <li>
               Quick note:{" "}
               <b>
-                {dataProceed && dataProceed.quickNote
-                  ? dataProceed.quickNote
+                {dataProceed && dataProceed.quick_note
+                  ? dataProceed.quick_note
                   : ""}
               </b>{" "}
             </li>

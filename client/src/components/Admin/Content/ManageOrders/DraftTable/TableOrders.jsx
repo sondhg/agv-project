@@ -7,8 +7,8 @@ const TableOrders = (props) => {
       <Table striped bordered hover variant="dark">
         <thead>
           <tr>
-            <th scope="col">No.</th>
-            <th scope="col">Vehicle code</th>
+            <th scope="col">Order No.</th>
+            <th scope="col">Vehicle ID</th>
             <th scope="col">Start point</th>
             <th scope="col">End point</th>
             <th scope="col">Load amount</th>
@@ -23,11 +23,11 @@ const TableOrders = (props) => {
               return (
                 <tr key={`table-orders-${index}`}>
                   <td>{index + 1}</td>
-                  <td>{item.vehicleCode}</td>
-                  <td>{item.startPoint}</td>
-                  <td>{item.endPoint}</td>
-                  <td>{item.loadAmount}</td>
-                  <td>{item.quickNote}</td>
+                  <td>{item.vehicle_id}</td>
+                  <td>{item.previous_node}</td>
+                  <td>{item.next_node}</td>
+                  <td>{item.load_amount}</td>
+                  <td>{item.quick_note}</td>
                   <td>
                     <button
                       className="btn btn-success"

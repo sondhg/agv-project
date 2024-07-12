@@ -1,20 +1,24 @@
 import axios from "../utils/axiosCustomize"; //axios này là hàm instance, cách đặt tên ko quan trọng
 const postCreateNewOrder = (
-  vehicleCode,
-  startPoint,
-  endPoint,
-  loadAmount,
-  quickNote
+  vehicle_id,
+  previous_node,
+  next_node,
+  load_amount,
+  quick_note
 ) => {
   const form = new FormData();
-  form.append("vehicleCode", vehicleCode);
-  form.append("startPoint", startPoint);
-  form.append("endPoint", endPoint);
-  form.append("loadAmount", loadAmount);
-  form.append("quickNote", quickNote);
+  form.append("vehicle_id", vehicle_id);
+  form.append("previous_node", previous_node);
+  form.append("next_node", next_node);
+  form.append("load_amount", load_amount);
+  form.append("quick_note", quick_note);
+  form.append("is_active", true);
+  form.append("connected", true);
+  form.append("vehicle_model", "Model X");
+  form.append("guidance_type", "Optical Tape");
 
   //order-draft là viết tắt của http://localhost:8000/orders-draft nhờ axiosCustomize.jsx
-  return axios.post("orders-draft", form, {
+  return axios.post("/orders-draft", form, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -26,16 +30,27 @@ const getAllOrders = () => {
   return axios.get("/orders-draft");
 };
 
-const putUpdateOrder = (id, vehicleCode, startPoint, endPoint, loadAmount, quickNote) => {
+const putUpdateOrder = (
+  id,
+  vehicle_id,
+  previous_node,
+  next_node,
+  load_amount,
+  quick_note
+) => {
   const form = new FormData();
-  //ko truyền vehicleCode vào props vì ta ko muốn người dùng edit trường đó khi update
+  //ko truyền vehicle_id vào props vì ta ko muốn người dùng edit trường đó khi update
   //cần truyền biến id để biết đang xét order nào
   form.append("id", id);
-  form.append("vehicleCode", vehicleCode);
-  form.append("startPoint", startPoint);
-  form.append("endPoint", endPoint);
-  form.append("loadAmount", loadAmount);
-  form.append("quickNote", quickNote);
+  form.append("vehicle_id", vehicle_id);
+  form.append("previous_node", previous_node);
+  form.append("next_node", next_node);
+  form.append("load_amount", load_amount);
+  form.append("quick_note", quick_note);
+  form.append("is_active", true);
+  form.append("connected", true);
+  form.append("vehicle_model", "Model X");
+  form.append("guidance_type", "Optical Tape");
 
   return axios.put(`/orders-draft/${id}`, form, {
     headers: {

@@ -11,30 +11,30 @@ const ModalUpdateOrder = (props) => {
 
   const handleClose = () => {
     setShow(false);
-    setVehicleCode("1");
-    setStartPoint("A");
-    setEndPoint("A");
+    setVehicleId("1");
+    setPreviousNode(1);
+    setNextNode(1);
     setLoadAmount(0);
     setQuickNote("");
     props.resetUpdateData();
   };
 
-  const [vehicleCode, setVehicleCode] = useState("1");
-  const [startPoint, setStartPoint] = useState("A");
-  const [endPoint, setEndPoint] = useState("A");
-  const [loadAmount, setLoadAmount] = useState(0);
-  const [quickNote, setQuickNote] = useState("");
+  const [vehicle_id, setVehicleId] = useState("1");
+  const [previous_node, setPreviousNode] = useState(1);
+  const [next_node, setNextNode] = useState(1);
+  const [load_amount, setLoadAmount] = useState(0);
+  const [quick_note, setQuickNote] = useState("");
 
   //const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
     if (!_.isEmpty(dataUpdate)) {
       //Nếu biến dataUpdate ko rỗng thì update state
-      setVehicleCode(dataUpdate.vehicleCode);
-      setStartPoint(dataUpdate.startPoint);
-      setEndPoint(dataUpdate.endPoint);
-      setLoadAmount(dataUpdate.loadAmount);
-      setQuickNote(dataUpdate.quickNote);
+      setVehicleId(dataUpdate.vehicle_id);
+      setPreviousNode(dataUpdate.previous_node);
+      setNextNode(dataUpdate.next_node);
+      setLoadAmount(dataUpdate.load_amount);
+      setQuickNote(dataUpdate.quick_note);
     }
   }, [props.dataUpdate]);
 
@@ -43,11 +43,11 @@ const ModalUpdateOrder = (props) => {
 
     let data = await putUpdateOrder(
       dataUpdate.id,
-      vehicleCode,
-      startPoint,
-      endPoint,
-      loadAmount,
-      quickNote
+      vehicle_id,
+      previous_node,
+      next_node,
+      load_amount,
+      quick_note
     );
     if (data) {
       //chưa có validate
@@ -76,9 +76,9 @@ const ModalUpdateOrder = (props) => {
               <label className="form-label">Vehicle code</label>
               <select
                 className="form-select"
-                value={vehicleCode}
-                onChange={(event) => setVehicleCode(event.target.value)}
-                // disabled //tương đương disabled={true}, tức ko cho phép thay đổi trường vehicleCode
+                value={vehicle_id}
+                onChange={(event) => setVehicleId(event.target.value)}
+                // disabled //tương đương disabled={true}, tức ko cho phép thay đổi trường vehicle_id
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -90,26 +90,28 @@ const ModalUpdateOrder = (props) => {
               <label className="form-label">Start point</label>
               <select
                 className="form-select"
-                value={startPoint}
-                onChange={(event) => setStartPoint(event.target.value)}
+                value={previous_node}
+                type="number"
+                onChange={(event) => setPreviousNode(event.target.value)}
               >
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
               </select>
             </div>
             <div className="col-md-4">
               <label className="form-label">End point</label>
               <select
                 className="form-select"
-                value={endPoint}
-                onChange={(event) => setEndPoint(event.target.value)}
+                value={next_node}
+                type="number"
+                onChange={(event) => setNextNode(event.target.value)}
               >
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
               </select>
             </div>
             <div className="col-md-6">
@@ -117,7 +119,7 @@ const ModalUpdateOrder = (props) => {
               <input
                 type="number"
                 className="form-control"
-                value={loadAmount}
+                value={load_amount}
                 onChange={(event) => setLoadAmount(event.target.value)}
               />
             </div>
@@ -126,7 +128,7 @@ const ModalUpdateOrder = (props) => {
               <input
                 type="text"
                 className="form-control"
-                value={quickNote}
+                value={quick_note}
                 onChange={(event) => setQuickNote(event.target.value)}
               />
             </div>
