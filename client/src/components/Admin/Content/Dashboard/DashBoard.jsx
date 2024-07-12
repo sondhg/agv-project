@@ -16,8 +16,9 @@ import MyCard from "./components/MyCard";
 
 const Dashboard = () => {
   const [socketUrl, setSocketUrl] = useState(
-    "wss://stream.binance.com:9443/ws/btcusdt@trade"
+    "ws://localhost:8000/ws/?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNzE2MjY5Mzk5LCJpYXQiOjE3MTYyNjU3OTl9.hNUu1vZtfQ2isNpAHykPxDw1L5mNNFdgrt7fxfxQz6s"
   );
+  //hỏi HA xem link có cần token ko? kiểu như `.../${access_token}`
   const [data, setData] = useState([]);
 
   const { lastJsonMessage, readyState, lastMessage } = useWebSocket(socketUrl, {
@@ -37,8 +38,9 @@ const Dashboard = () => {
   useEffect(() => {
     if (lastJsonMessage) {
       setData({
-        price: lastJsonMessage.p,
-        time: lastJsonMessage.t,
+        speed: lastJsonMessage.Agv_speed,
+        battery: lastJsonMessage.Agv_battery,
+        distance: lastJsonMessage.Agv_distance,
       });
     }
   }, [lastJsonMessage]);
@@ -65,28 +67,28 @@ const Dashboard = () => {
           <Row xs={1} md={4}>
             <MyCard
               title="Speed"
-              dataDisplay={`${data.price} m/s`}
+              dataDisplay={`${data.speed} m/s`}
               icon={<IoIosSpeedometer />}
               bg="primary"
               text="white"
             />
             <MyCard
               title="Obstacle detected"
-              dataDisplay={data.time}
+              dataDisplay={data.time} //HA chưa tạo biến check có/ko có vật cản
               icon={<IoIosWarning />}
               bg="danger"
               text="white"
             />
             <MyCard
               title="Battery"
-              dataDisplay={data.time}
+              dataDisplay={data.battery}
               icon={<FaBatteryHalf />}
               bg="success"
               text="white"
             />
             <MyCard
               title="Distance traveled"
-              dataDisplay={data.time}
+              dataDisplay={data.distance}
               icon={<GiPathDistance />}
               bg="info"
               text="white"

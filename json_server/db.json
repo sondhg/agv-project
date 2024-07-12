@@ -1,18 +1,5 @@
 {
-  "orders-draft": [
-    {
-      "id": "4b85",
-      "vehicle_id": "1",
-      "previous_node": "1",
-      "next_node": "4",
-      "load_amount": "5",
-      "quick_note": "",
-      "is_active": "true",
-      "connected": "true",
-      "vehicle_model": "Model X",
-      "guidance_type": "Optical Tape"
-    }
-  ],
+  "orders-draft": [],
   "orders-proceeded": [],
   "agv-parameters-display": [],
   "users": [],

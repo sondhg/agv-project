@@ -1,3 +1,5 @@
+// baseURL: "http://localhost:8081" của mock json-server
+
 import axios from "../utils/axiosCustomize"; //axios này là hàm instance, cách đặt tên ko quan trọng
 const postCreateNewOrder = (
   vehicle_id,

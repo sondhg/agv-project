@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { proceedOrder, deleteOrder } from "../../../../../services/apiServices";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { HA_proceedOrder } from "../../../../../services/HA_apiServices";
 
 const ModalProceedOrder = (props) => {
   const { show, setShow, dataProceed } = props;
@@ -11,10 +12,10 @@ const ModalProceedOrder = (props) => {
   const navigate = useNavigate();
 
   const handleSubmitProceedOrder = async () => {
-    let data = await (proceedOrder(dataProceed), deleteOrder(dataProceed.id));
+    let data = await (proceedOrder(dataProceed), deleteOrder(dataProceed.id), HA_proceedOrder(dataProceed));
 
     if (data) {
-      console.log(">>>data is: ", data);
+      console.log(">>> data is: ", data);
       toast.success("Order sent to AGV!");
       handleClose();
       await props.fetchListOrders();

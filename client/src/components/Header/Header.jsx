@@ -8,6 +8,7 @@ import { Button } from "react-bootstrap";
 import { logout } from "../../services/apiServices";
 import { toast } from "react-toastify";
 import { doLogout } from "../../redux/action/userAction";
+import { HA_logout } from "../../services/HA_apiServices";
 
 
 const Header = () => {
@@ -26,7 +27,7 @@ const Header = () => {
   };
 
   const handleLogOut = async () => {
-    let res = await logout(account.email, account.refresh_token);
+    let res = await HA_logout(account.email, account.refresh_token);
     if (res /* && res.EC === 0 */) {
       //need to clear data redux
       dispatch(doLogout());

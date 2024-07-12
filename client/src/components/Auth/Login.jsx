@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/userAction";
 import { ImSpinner10 } from "react-icons/im";
+import { HA_postLogin } from "../../services/HA_apiServices";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
@@ -36,7 +37,8 @@ const Login = (props) => {
     setIsLoading(true);
 
     //submit api
-    let data = await postLogin(email, password);
+    let data = await (postLogin(email, password),
+    HA_postLogin(email, password));
     console.log(">>> check res: ", data);
     // if (data && +data.EC === 0 ) {
     //   //Dấu + là để convert type từ string sang number
@@ -52,11 +54,10 @@ const Login = (props) => {
     // }
 
     //tạm thời chưa có database thì để như này
-    if (data /* && +data.EC === 0 */) {
-      //Dấu + là để convert type từ string sang number
+    if (data) {
       dispatch(doLogin(data));
-      toast.success("Login successful" /* data.EM */);
-      setIsLoading(false); //phải để dòng này TRÊN dòng navigate
+      toast.success("Login successful");
+      setIsLoading(false);
       navigate("/");
     }
   };
