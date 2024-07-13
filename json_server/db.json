@@ -2,6 +2,13 @@
   "orders-draft": [],
   "agvs": [],
   "users": [],
-  "login": [],
+  "login": [
+    {
+      "id": "92b1",
+      "email": "s@gmail.com",
+      "password": "dcdcd",
+      "delay": 5000
+    }
+  ],
   "register": []
 }
