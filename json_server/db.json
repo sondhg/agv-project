@@ -3,6 +3,19 @@
   "orders-proceeded": [],
   "agv-parameters-display": [],
   "users": [],
-  "login": [],
+  "login": [
+    {
+      "id": "7c7d",
+      "email": "son@gmail.cpm",
+      "password": "testpass",
+      "delay": 5000
+    },
+    {
+      "id": "e471",
+      "email": "gara@gmail.com",
+      "password": "testpass",
+      "delay": 5000
+    }
+  ],
   "register": []
 }

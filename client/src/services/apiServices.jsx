@@ -1,6 +1,8 @@
 // baseURL: "http://localhost:8081" của mock json-server
 
 import axios from "../utils/axiosCustomize"; //axios này là hàm instance, cách đặt tên ko quan trọng
+import { v4 as uuidv4 } from "uuid";
+
 const postCreateNewOrder = (
   vehicle_id,
   previous_node,
@@ -9,6 +11,7 @@ const postCreateNewOrder = (
   quick_note
 ) => {
   const form = new FormData();
+  form.append("id", uuidv4());
   form.append("vehicle_id", vehicle_id);
   form.append("previous_node", previous_node);
   form.append("next_node", next_node);
@@ -19,7 +22,6 @@ const postCreateNewOrder = (
   form.append("vehicle_model", "Model X");
   form.append("guidance_type", "Optical Tape");
 
-  //order-draft là viết tắt của http://localhost:8000/orders-draft nhờ axiosCustomize.jsx
   return axios.post("/orders-draft", form, {
     headers: {
       "Content-Type": "application/json",
