@@ -1,4 +1,6 @@
 import axios from "../utils/axiosCustomize"; //axios này là hàm instance, cách đặt tên ko quan trọng
+import { v4 as uuidv4 } from "uuid";
+
 const postCreateNewOrder = (
   vehicle_id,
   previous_node,
@@ -16,6 +18,7 @@ const postCreateNewOrder = (
   form.append("connected", true);
   form.append("vehicle_model", "Model X");
   form.append("guidance_type", "Optical Tape");
+  form.append("id", uuidv4());
 
   //order-draft là viết tắt của http://localhost:8000/orders-draft nhờ axiosCustomize.jsx
   return axios.post("/orders-draft", form, {

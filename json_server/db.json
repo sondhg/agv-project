@@ -1,13 +1,26 @@
 {
-  "orders-draft": [],
+  "orders-draft": [
+    {
+      "id": "b0de57f0-b8df-472d-9715-96e382b0c2b1",
+      "vehicle_id": "1",
+      "previous_node": "2",
+      "next_node": "3",
+      "load_amount": "0",
+      "quick_note": "",
+      "is_active": "true",
+      "connected": "true",
+      "vehicle_model": "Model X",
+      "guidance_type": "Optical Tape"
+    }
+  ],
   "orders-proceeded": [
     {
-      "id": "c7f8",
-      "vehicle_id": "2",
-      "previous_node": "4",
-      "next_node": "3",
-      "load_amount": "1",
-      "quick_note": "awesome",
+      "id": "a33de8db-68db-49ea-be24-f9daf1a564a3",
+      "vehicle_id": "1",
+      "previous_node": "1",
+      "next_node": "2",
+      "load_amount": "0",
+      "quick_note": "test with uuid",
       "is_active": "true",
       "connected": "true",
       "vehicle_model": "Model X",
