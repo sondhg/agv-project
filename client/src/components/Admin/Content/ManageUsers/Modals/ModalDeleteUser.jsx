@@ -29,31 +29,21 @@ const ModalDeleteUser = (props) => {
           <ul>
             <li>
               Vehicle code:{" "}
-              <b>
-                {dataDelete && dataDelete.email
-                  ? dataDelete.email
-                  : ""}
-              </b>{" "}
+              <b>{dataDelete && dataDelete.email ? dataDelete.email : ""}</b>{" "}
             </li>
             <li>
               Start point:{" "}
               <b>
-                {dataDelete && dataDelete.password
-                  ? dataDelete.password
-                  : ""}
+                {dataDelete && dataDelete.password ? dataDelete.password : ""}
               </b>{" "}
             </li>
             <li>
               End point:{" "}
-              <b>
-                {dataDelete && dataDelete.username ? dataDelete.username : ""}
-              </b>{" "}
+              <b>{dataDelete && dataDelete.name ? dataDelete.name : ""}</b>{" "}
             </li>
             <li>
               Quick note:{" "}
-              <b>
-                {dataDelete && dataDelete.role ? dataDelete.role : ""}
-              </b>{" "}
+              <b>{dataDelete && dataDelete.role ? dataDelete.role : ""}</b>{" "}
             </li>
           </ul>
         </Modal.Body>

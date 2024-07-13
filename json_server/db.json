@@ -1,33 +1,6 @@
 {
-  "orders-draft": [
-    {
-      "id": "b0de57f0-b8df-472d-9715-96e382b0c2b1",
-      "vehicle_id": "1",
-      "previous_node": "2",
-      "next_node": "3",
-      "load_amount": "0",
-      "quick_note": "",
-      "is_active": "true",
-      "connected": "true",
-      "vehicle_model": "Model X",
-      "guidance_type": "Optical Tape"
-    }
-  ],
-  "orders-proceeded": [
-    {
-      "id": "a33de8db-68db-49ea-be24-f9daf1a564a3",
-      "vehicle_id": "1",
-      "previous_node": "1",
-      "next_node": "2",
-      "load_amount": "0",
-      "quick_note": "test with uuid",
-      "is_active": "true",
-      "connected": "true",
-      "vehicle_model": "Model X",
-      "guidance_type": "Optical Tape"
-    }
-  ],
-  "agv-parameters-display": [],
+  "orders-draft": [],
+  "orders-proceeded": [],
   "users": [],
   "login": [],
   "register": []

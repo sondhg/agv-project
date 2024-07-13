@@ -11,13 +11,13 @@ const ModalCreateUser = (props) => {
     setShow(false);
     setEmail("");
     setPassword("");
-    setUsername("");
+    setName("");
     setRole("USER");
   };
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [role, setRole] = useState("USER");
 
   const validateEmail = (email) => {
@@ -41,7 +41,7 @@ const ModalCreateUser = (props) => {
       return;
     }
 
-    let data = await postCreateNewUser(email, password, username, role);
+    let data = await postCreateNewUser(email, password, name, role);
     console.log(">>> component res: ", data);
     if (data) {
       toast.success("User successfully added!");
@@ -87,8 +87,8 @@ const ModalCreateUser = (props) => {
               <input
                 type="text"
                 className="form-control"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
+                value={name}
+                onChange={(event) => setName(event.target.value)}
               />
             </div>
             <div className="col-md-4">

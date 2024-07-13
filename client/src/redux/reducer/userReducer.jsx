@@ -5,9 +5,9 @@ import {
 
 const INITIAL_STATE = {
   account: {
-    access_token: "",
+    jwt: "",
     refresh_token: "",
-    username: "",
+    name: "",
     role: "",
     email: "",
   },
@@ -21,11 +21,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         account: {
-          access_token: action?.payload?.DT?.access_token,
-          refresh_token: action?.payload?.DT?.refresh_token,
-          username: action?.payload?.DT?.username,
-          role: action?.payload?.DT?.role,
-          email: action?.payload?.DT?.email,
+          jwt: action?.payload?.jwt, //access_token
+          refresh_token: action?.payload?.refresh_token,
+          name: action?.payload?.name,
+          role: action?.payload?.role,
+          email: action?.payload?.email,
         },
         isAuthenticated: true,
         //Sửa lại nếu Hoàng Anh làm database có các biến DT, EM, EC như Hỏi Dân IT
@@ -35,9 +35,9 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         account: {
-          access_token: "",
+          jwt: "",
           refresh_token: "",
-          username: "",
+          name: "",
           role: "",
           email: "",
         },

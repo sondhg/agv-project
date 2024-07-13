@@ -13,6 +13,7 @@ import Col from "react-bootstrap/Col";
 import { LineChart, XAxis, CartesianGrid, Tooltip, Line } from "recharts";
 
 import MyCard from "./components/MyCard";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const [socketUrl, setSocketUrl] = useState(
@@ -42,6 +43,12 @@ const Dashboard = () => {
       });
     }
   }, [lastJsonMessage]);
+
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const account = useSelector((state) => state.user.account);
+
+  const access_token = account.jwt;
+  // console.log("access_token: ", access_token);
 
   return (
     <div>

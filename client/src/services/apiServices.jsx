@@ -80,11 +80,11 @@ const getDisplayAgvParams = () => {
 //có thể dùng cho TableDisplayAgvParams, nhưng code cũ chạy ổn r nên thôi
 
 //Phần dưới đây dùng cho User/Account
-const postCreateNewUser = (email, password, username, role) => {
+const postCreateNewUser = (email, password, name, role) => {
   const form = new FormData();
   form.append("email", email);
   form.append("password", password);
-  form.append("username", username);
+  form.append("name", name);
   form.append("role", role);
 
   return axios.post("/users", form, {
@@ -98,12 +98,12 @@ const getAllUsers = () => {
   return axios.get("/users");
 };
 
-const putUpdateUser = (id, password, username, role) => {
+const putUpdateUser = (id, password, name, role) => {
   const form = new FormData();
   //cần truyền biến id để biết đang xét user nào
   form.append("id", id);
   form.append("password", password);
-  form.append("username", username);
+  form.append("name", name);
   form.append("role", role);
 
   return axios.put(`/users/${id}`, form, {
@@ -127,11 +127,11 @@ const postLogin = (userEmail, userPassword) => {
   //được thêm vào qua chức năng Manage User
 };
 
-const postRegister = (email, password, username) => {
+const postRegister = (email, password, name) => {
   return axios.post("/register", {
     email,
     password,
-    username,
+    name,
   });
 };
 

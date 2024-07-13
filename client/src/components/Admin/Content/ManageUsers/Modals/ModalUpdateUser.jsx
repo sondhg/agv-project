@@ -13,14 +13,14 @@ const ModalUpdateUser = (props) => {
     setShow(false);
     setEmail("McLaren");
     setPassword("A");
-    setUsername("A");
+    setName("A");
     setRole("");
     props.resetUpdateUser();
   };
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [role, setRole] = useState("USER");
   //const [isPending, setIsPending] = useState(false);
 
@@ -29,7 +29,7 @@ const ModalUpdateUser = (props) => {
       //Nếu biến dataUpdate ko rỗng thì update state
       setEmail(dataUpdate.email);
       setPassword(dataUpdate.password);
-      setUsername(dataUpdate.username);
+      setName(dataUpdate.name);
       setRole(dataUpdate.role);
     }
   }, [props.dataUpdate]);
@@ -37,7 +37,7 @@ const ModalUpdateUser = (props) => {
   const handleSubmitCreateUser = async () => {
     //validate: mai làm sau
 
-    let data = await putUpdateUser(dataUpdate.id, password, username, role);
+    let data = await putUpdateUser(dataUpdate.id, password, name, role);
     //cần phần headers thì mới chạy đc, vì json-server của mình ko hoạt động với formdata giống video
     if (data) {
       //chưa có validate
@@ -86,8 +86,8 @@ const ModalUpdateUser = (props) => {
               <input
                 type="text"
                 className="form-control"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
+                value={name}
+                onChange={(event) => setName(event.target.value)}
               />
             </div>
             <div className="col-md-4">

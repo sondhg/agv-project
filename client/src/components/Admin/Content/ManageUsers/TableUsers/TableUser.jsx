@@ -24,7 +24,7 @@ const TableUsers = (props) => {
                   <td>{index + 1}</td>
                   <td>{item.email}</td>
                   <td>{item.password}</td>
-                  <td>{item.username}</td>
+                  <td>{item.name}</td>
                   <td>{item.role}</td>
                   <td>
                     <button

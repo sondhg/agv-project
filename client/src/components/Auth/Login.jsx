@@ -55,14 +55,13 @@ const Login = (props) => {
     if (data /* && +data.EC === 0 */) {
       //Dấu + là để convert type từ string sang number
       dispatch(doLogin(data));
-      toast.success("Login successful" /* data.EM */);
+      toast.success("Login successful");
       setIsLoading(false); //phải để dòng này TRÊN dòng navigate
       navigate("/");
     }
   };
 
   const handleKeyDown = (event) => {
-    console.log("event key: ", event.key, event);
     if (event && event.key === "Enter") {
       handleLogin();
     }
