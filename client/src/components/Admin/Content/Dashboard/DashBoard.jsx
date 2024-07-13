@@ -16,8 +16,15 @@ import MyCard from "./components/MyCard";
 import { useSelector } from "react-redux";
 
 const Dashboard = () => {
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const account = useSelector((state) => state.user.account);
+
+  const access_token = account.jwt;
+  // console.log("access_token: ", access_token);
+
+  //WebSocket
   const [socketUrl, setSocketUrl] = useState(
-    "wss://stream.binance.com:9443/ws/btcusdt@trade"
+    `ws://localhost:8000/ws/?token=${access_token}`
   );
   const [data, setData] = useState([]);
 
@@ -44,12 +51,7 @@ const Dashboard = () => {
     }
   }, [lastJsonMessage]);
 
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-  const account = useSelector((state) => state.user.account);
-
-  const access_token = account.jwt;
-  // console.log("access_token: ", access_token);
-
+  
   return (
     <div>
       {/* <div>The WebSocket is currently {connectionStatus}</div>
