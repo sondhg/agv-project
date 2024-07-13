@@ -68,7 +68,7 @@ const deleteOrder = (orderId) => {
 };
 
 const proceedOrder = (order) => {
-  return axios.post("/orders-proceeded", order, {
+  return axios.post("/agvs", order, {
     headers: {
       "Content-Type": "application/json",
     }, //biến order sẽ là 1 object, cần nghĩ cách post giống hàm postCreateNewOrder

@@ -13,12 +13,17 @@ import Col from "react-bootstrap/Col";
 import { LineChart, XAxis, CartesianGrid, Tooltip, Line } from "recharts";
 
 import MyCard from "./components/MyCard";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const account = useSelector((state) => state.user.account);
+  const access_token = account.jwt;
+
   const [socketUrl, setSocketUrl] = useState(
-    "ws://localhost:8000/ws/?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNzE2MjY5Mzk5LCJpYXQiOjE3MTYyNjU3OTl9.hNUu1vZtfQ2isNpAHykPxDw1L5mNNFdgrt7fxfxQz6s"
+    `ws://localhost:8000/ws/?token=${access_token}`
   );
-  //hỏi HA xem link có cần token ko? kiểu như `.../${access_token}`
+  //hỏi HA xem link có cần token ko? kiểu như `.../${jwt}`
   const [data, setData] = useState([]);
 
   const { lastJsonMessage, readyState, lastMessage } = useWebSocket(socketUrl, {

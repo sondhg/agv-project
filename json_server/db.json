@@ -1,21 +1,7 @@
 {
   "orders-draft": [],
-  "orders-proceeded": [],
-  "agv-parameters-display": [],
+  "agvs": [],
   "users": [],
-  "login": [
-    {
-      "id": "7c7d",
-      "email": "son@gmail.cpm",
-      "password": "testpass",
-      "delay": 5000
-    },
-    {
-      "id": "e471",
-      "email": "gara@gmail.com",
-      "password": "testpass",
-      "delay": 5000
-    }
-  ],
+  "login": [],
   "register": []
 }

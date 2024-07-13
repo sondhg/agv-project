@@ -21,7 +21,7 @@ B. CÁCH CHẠY UI SAU KHI CLONE CODE VỀ:
 2. Chạy server ẢO (Đây chỉ là server đơn giản để test API với JSON, chưa phải server của Hoàng Anh)
 
 - Mở 1 terminal KHÁC vẫn từ folder tổng --> cd server --> npm start
-  ===> json-server ở localhost:8000 (gồm nhiều nhánh: /orders-draft, /orders-proceeded, /login, /register, ...) đã chạy
+  ===> json-server ở localhost:8000 (gồm nhiều nhánh: /orders-draft, /agvs, /login, /register, ...) đã chạy
 
   - Có thể vào file "db.json" ở folder "server" để xem, check các thay đổi và sửa đổi database ảo
 
