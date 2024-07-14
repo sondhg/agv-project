@@ -1,3 +1,6 @@
+import axios from "../utils/HA_axiosCustomize"; //axios này là hàm instance, cách đặt tên ko quan trọng
+import { v4 as uuidv4 } from "uuid";
+
 const HA_proceedOrder = (order) => {
   return axios.post("/agvs", order, {
     headers: {
