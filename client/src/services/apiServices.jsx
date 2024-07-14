@@ -42,7 +42,6 @@ const putUpdateOrder = (
   quick_note
 ) => {
   const form = new FormData();
-  //ko truyền vehicle_id vào props vì ta ko muốn người dùng edit trường đó khi update
   //cần truyền biến id để biết đang xét order nào
   form.append("id", id);
   form.append("vehicle_id", vehicle_id);
@@ -119,24 +118,37 @@ const deleteUser = (userId) => {
 
 //Dưới đây là cho Login
 const postLogin = (userEmail, userPassword) => {
-  return axios.post("/login", {
-    email: userEmail,
-    password: userPassword,
-    delay: 5000,
-  });
+  return axios.post(
+    "/login",
+    // "/posts",
+    {
+      email: userEmail,
+      password: userPassword,
+      // delay: 5000,
+    },
+    { headers: { "content-type": "application/json" } }
+  );
   //được thêm vào qua chức năng Manage User
 };
 
 const postRegister = (email, password, name) => {
-  return axios.post("/register", {
-    email,
-    password,
-    name,
-  });
+  return axios.post(
+    "/register",
+    {
+      email,
+      password,
+      name,
+    },
+    { headers: { "content-type": "application/json" } }
+  );
 };
 
 const logout = (email, refresh_token) => {
-  return axios.post("/logout", { email, refresh_token });
+  return axios.post(
+    "/logout",
+    { email, refresh_token },
+    { headers: { "content-type": "application/json" } }
+  );
 };
 
 export {
