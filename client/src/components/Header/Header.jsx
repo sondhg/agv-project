@@ -5,9 +5,10 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
-import { logout } from "../../services/apiServices";
+//import { logout } from "../../services/apiServices";
 import { toast } from "react-toastify";
 import { doLogout } from "../../redux/action/userAction";
+import { HA_logout } from "../../services/HA_apiServices";
 
 const Header = () => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
@@ -25,7 +26,7 @@ const Header = () => {
   };
 
   const handleLogOut = async () => {
-    let res = await logout(account.email, account.refresh_token);
+    let res = await HA_logout(account.email, account.refresh_token);
     if (res /* && res.EC === 0 */) {
       //need to clear data redux
       dispatch(doLogout());
@@ -98,5 +99,3 @@ const Header = () => {
 };
 
 export default Header;
-
-

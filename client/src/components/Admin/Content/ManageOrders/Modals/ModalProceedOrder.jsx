@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { proceedOrder, deleteOrder } from "../../../../../services/apiServices";
+//import { proceedOrder, deleteOrder } from "../../../../../services/apiServices";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { HA_proceedOrder } from "../../../../../services/HA_apiServices";
 
 const ModalProceedOrder = (props) => {
   const { show, setShow, dataProceed } = props;
@@ -11,7 +12,9 @@ const ModalProceedOrder = (props) => {
   const navigate = useNavigate();
 
   const handleSubmitProceedOrder = async () => {
-    let data = await (proceedOrder(dataProceed), deleteOrder(dataProceed.id));
+    // let data = await (proceedOrder(dataProceed), deleteOrder(dataProceed.id));
+
+    let data = await HA_proceedOrder(dataProceed);
 
     if (data) {
       toast.success("Order sent to AGV!");

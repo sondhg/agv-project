@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "./Register.scss";
 import { useNavigate } from "react-router-dom";
-import { postRegister } from "../../services/apiServices";
+//import { postRegister } from "../../services/apiServices";
 import { toast } from "react-toastify";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
+import { HA_postRegister } from "../../services/HA_apiServices";
 
 const Register = (props) => {
   const [email, setEmail] = useState("");
@@ -35,7 +36,7 @@ const Register = (props) => {
     }
 
     //submit apis
-    let data = await postRegister(email, password, name);
+    let data = await HA_postRegister(email, password, name);
     // if (data && data.EC === 0) {
     //     toast.success(data.EM);
     //     navigate('/login')
