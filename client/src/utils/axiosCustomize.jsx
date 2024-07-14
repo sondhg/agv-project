@@ -1,7 +1,6 @@
 import axios from "axios";
 const instance = axios.create({
   baseURL: "http://localhost:8081",
-  // baseURL: "https://jsonplaceholder.typicode.com",
 });
 // Add a request interceptor
 instance.interceptors.request.use(

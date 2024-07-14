@@ -81,6 +81,7 @@ const getDisplayAgvParams = () => {
 //Phần dưới đây dùng cho User/Account
 const postCreateNewUser = (email, password, name, role) => {
   const form = new FormData();
+  form.append("id", uuidv4());
   form.append("email", email);
   form.append("password", password);
   form.append("name", name);
