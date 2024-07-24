@@ -13,7 +13,6 @@ import Col from "react-bootstrap/Col";
 import { LineChart, XAxis, CartesianGrid, Tooltip, Line } from "recharts";
 
 import MyCard from "./components/MyCard";
-import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const [socketUrl, setSocketUrl] = useState(
@@ -38,17 +37,11 @@ const Dashboard = () => {
   useEffect(() => {
     if (lastJsonMessage) {
       setData({
-        price: lastJsonMessage.p,
-        time: lastJsonMessage.t,
+        price: lastJsonMessage?.p,
+        time: lastJsonMessage?.t,
       });
     }
   }, [lastJsonMessage]);
-
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-  const account = useSelector((state) => state.user.account);
-
-  const access_token = account.jwt;
-  // console.log("access_token: ", access_token);
 
   return (
     <div>
@@ -59,7 +52,7 @@ const Dashboard = () => {
       <div>
         <Container
           className="border border-2 rounded border-dark-subtle p-3 mt-4 bg-secondary text-white"
-          style={{ width: "60rem" }}
+          //style={{ width: "70rem" }}
         >
           <Row>
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -70,34 +63,46 @@ const Dashboard = () => {
             </div>
           </Row>
           <Row xs={1} md={4}>
-            <MyCard
-              title="Speed"
-              dataDisplay={`${data.price} m/s`}
-              icon={<IoIosSpeedometer />}
-              bg="primary"
-              text="white"
-            />
-            <MyCard
-              title="Obstacle detected"
-              dataDisplay={data.time}
-              icon={<IoIosWarning />}
-              bg="danger"
-              text="white"
-            />
-            <MyCard
-              title="Battery"
-              dataDisplay={data.time}
-              icon={<FaBatteryHalf />}
-              bg="success"
-              text="white"
-            />
-            <MyCard
-              title="Distance traveled"
-              dataDisplay={data.time}
-              icon={<GiPathDistance />}
-              bg="info"
-              text="white"
-            />
+            <Col>
+              <MyCard
+                title="Speed"
+                dataDisplay={`${data.price} m/s`}
+                // dataDisplay={`11 m/s`}
+                icon={<IoIosSpeedometer />}
+                bg="primary"
+                text="white"
+              />
+            </Col>
+            <Col>
+              <MyCard
+                title="Obstacle detected"
+                dataDisplay={data.time}
+                // dataDisplay={"No"}
+                icon={<IoIosWarning />}
+                bg="danger"
+                text="white"
+              />
+            </Col>
+            <Col>
+              <MyCard
+                title="Battery"
+                dataDisplay={data.time}
+                // dataDisplay={`98%`}
+                icon={<FaBatteryHalf />}
+                bg="success"
+                text="white"
+              />
+            </Col>
+            <Col>
+              <MyCard
+                title="Distance traveled"
+                dataDisplay={data.time}
+                // dataDisplay={"17 cm"}
+                icon={<GiPathDistance />}
+                bg="info"
+                text="white"
+              />
+            </Col>
           </Row>
         </Container>
       </div>

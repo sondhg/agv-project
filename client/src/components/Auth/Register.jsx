@@ -37,20 +37,22 @@ const Register = (props) => {
 
     //submit apis
     let data = await HA_postRegister(email, password, name);
-    // if (data && data.EC === 0) {
-    //     toast.success(data.EM);
-    //     navigate('/login')
-    // }
 
-    // if (data && +data.EC !== 0) {
-    //     toast.error(data.EM);
-    // }
-
-    if (data) {
+    if (data && data.email[0] === "user with this email already exists.") {
+      toast.error(data.email[0]);
+    }
+    if (data && data.email[0] !== "user with this email already exists.") {
       toast.success("Sign up successfully");
       navigate("/login");
     }
   };
+
+  const handleKeyDown = (event) => {
+    if (event && event.key === "Enter") {
+      handleRegister();
+    }
+  };
+
   return (
     <div className="register-container bg-light-subtle text-dark">
       <div className="header">
@@ -98,6 +100,7 @@ const Register = (props) => {
             className="form-control"
             value={name}
             onChange={(event) => setName(event.target.value)}
+            onKeyDown={(event) => handleKeyDown(event)}
           />
         </div>
         <div>

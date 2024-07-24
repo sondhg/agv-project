@@ -39,26 +39,21 @@ const Login = (props) => {
     //submit api
     let data = await HA_postLogin(email, password);
     console.log(">>> check res: ", data);
-    // if (data && +data.EC === 0 ) {
-    //   //Dấu + là để convert type từ string sang number
-    //   dispatch(doLogin(data));
-    //   toast.success("Login successful" /* data.EM */);
-    //   setIsLoading(false); //phải để dòng này TRÊN dòng navigate
-    //   navigate("/");
-    // }
 
-    // if (data && +data.EC !== 0) {
-    //   toast.error(data.EM); //EM: error message tạo bởi backend
-    //   setIsLoading(false);
-    // }
-
-    //tạm thời chưa có database thì để như này
-    if (data /* && +data.EC === 0 */) {
-      //Dấu + là để convert type từ string sang number
+    if (data && data.jwt) {
+      localStorage.setItem("jwt", data.jwt);
       dispatch(doLogin(data));
       toast.success("Login successful");
       setIsLoading(false); //phải để dòng này TRÊN dòng navigate
       navigate("/");
+    }
+    if (data && data.detail === "User not found!") {
+      toast.error(data.detail);
+      setIsLoading(false);
+    }
+    if (data && data.detail === "Incorrect password!") {
+      toast.error(data.detail);
+      setIsLoading(false);
     }
   };
 

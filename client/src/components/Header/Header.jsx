@@ -30,6 +30,7 @@ const Header = () => {
     if (res /* && res.EC === 0 */) {
       //need to clear data redux
       dispatch(doLogout());
+      localStorage.clear("jwt");
       navigate("/login");
     } else {
       toast.error("Error, cannot log out");
@@ -59,12 +60,12 @@ const Header = () => {
             <NavLink to="/" className="nav-link">
               Home
             </NavLink>
-            <NavLink to="/admin" className="nav-link">
+            {/* <NavLink to="/admin" className="nav-link">
               Admin
-            </NavLink>
+            </NavLink> */}
             <Nav>
               {/* Nếu isAuthenticated = true, tức là ng dùng đã đăng nhập rồi 
-              thì mới hiện cái dropdown, còn ko thì chỉ hiện 2 button */}
+              thì mới hiện page Admin và cái dropdown, còn ko thì chỉ hiện 2 button */}
               {isAuthenticated === false ? (
                 <>
                   <Button
@@ -83,12 +84,17 @@ const Header = () => {
                   </Button>
                 </>
               ) : (
-                <NavDropdown title="Account" id="basic-nav-dropdown">
-                  <NavDropdown.Item>Profile</NavDropdown.Item>
-                  <NavDropdown.Item onClick={() => handleLogOut()}>
-                    Log out
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <>
+                  <NavLink to="/admin" className="nav-link">
+                    Admin
+                  </NavLink>
+                  <NavDropdown title="Account" id="basic-nav-dropdown">
+                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => handleLogOut()}>
+                      Log out
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </>
               )}
             </Nav>
           </Nav>

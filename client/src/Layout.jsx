@@ -11,28 +11,36 @@ import DashBoard from "./components/Admin/Content/Dashboard/DashBoard.jsx";
 import Login from "./components/Auth/Login.jsx";
 import Register from "./components/Auth/Register.jsx";
 import ManageUser from "./components/Admin/Content/ManageUsers/ManageUser.jsx";
+
+const NotFound = () => {
+  return (
+    <div className="alert alert-danger ">
+      404 Not Found: No data matches this URL
+    </div>
+  );
+};
+
 const Layout = (props) => {
   return (
     <div className="bg-dark  text-white">
       <Routes>
-        <Route>
-          <Route path="/" element={<Application />}>
-            <Route index element={<Home />} />
-          </Route>
-
-          <Route path="/admin" element={<Admin />}>
-            {/* 3 route dưới là cho AGV */}
-            <Route index element={<DashBoard />} />
-
-            <Route path="manage-orders" element={<ManageOrder />} />
-
-            {/* Route dưới là cho Accounts */}
-            <Route path="manage-users" element={<ManageUser />} />
-          </Route>
-
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<Register />}></Route>
+        <Route path="/" element={<Application />}>
+          <Route index element={<Home />} />
         </Route>
+
+        <Route path="/admin" element={<Admin />}>
+          {/* 3 route dưới là cho AGV */}
+          <Route index element={<DashBoard />} />
+
+          <Route path="manage-orders" element={<ManageOrder />} />
+
+          {/* Route dưới là cho Accounts */}
+          <Route path="manage-users" element={<ManageUser />} />
+        </Route>
+
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
 
       <ToastContainer

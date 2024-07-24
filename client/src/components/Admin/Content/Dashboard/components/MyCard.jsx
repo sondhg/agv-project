@@ -9,7 +9,7 @@ const MyCard = (props) => {
       text={text}
       border="none"
       className="m-1 bg-gradient shadow-lg"
-      style={{ width: "14rem" }}
+      //style={{ width: "14rem" }}
     >
       <Card.Header>{icon}</Card.Header>
       <Card.Body>

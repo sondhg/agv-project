@@ -16,7 +16,7 @@ B. CÁCH CHẠY UI SAU KHI CLONE CODE VỀ:
 1. Chạy giao diện web
 
 - Mở 1 terminal bên trong folder tổng, rồi nhập "cd client" (chuyển tới folder client) rồi nhập "npm run dev"
-  ===> Giao diện đã chạy, bấm vào link "localhost:5173" để xem GUI
+  ===> Giao diện đã chạy, bấm vào link "localhost:3000" để xem GUI
 
 2. Chạy server ẢO (Đây chỉ là server đơn giản để test API với JSON, chưa phải server của Hoàng Anh)
 
@@ -36,7 +36,10 @@ C. CÁCH THAO TÁC TRÊN UI
 
 D. Note về API và WebSocket
 
-- Các tác vụ API tôi để ở file: client/src/services/apiServices.jsx
+- Các tác vụ API với json-server ảo tôi để ở file: client/src/services/apiServices.jsx
+- Các tác vụ API với Python server của Hoàng Anh tôi để ở file: client/src/services/HA_apiServices.jsx
+và client/src/customize/HA_axiosCustomize.jsx (có xử lý token JWT)
+- Phải login rồi thì trên thanh Header mới có nút Admin để nhấp vào, bắt đầu điều khiển xe
 - WebSocket: ở file client/src/components/Admin/Content/Dashboard/Dashboard.jsx, đây cũng là file dùng hiển thị bảng dữ liệu
 
 E. Tài liệu học:

@@ -1,5 +1,5 @@
 //import "./styles.scss";
-import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Header from "./components/Header/Header.jsx";
 //import "bootstrap/dist/css/bootstrap.min.css";
 
