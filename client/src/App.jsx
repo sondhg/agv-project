@@ -9,13 +9,11 @@ function App() {
   document.title = "AGV UI";
   return (
     <Provider store={store}>
-      <div className="app-container">
-        <PersistGate loading={null} persistor={persistor}>
-          <BrowserRouter>
-            <Layout />
-          </BrowserRouter>
-        </PersistGate>
-      </div>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <Layout />
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   );
 }

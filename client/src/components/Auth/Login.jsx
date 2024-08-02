@@ -97,6 +97,7 @@ const Login = (props) => {
           <button
             className="btn-submit"
             onClick={() => handleLogin()}
+            // onClick={() => setTimeout(() => handleLogin(), 3000)}
             disabled={isLoading}
           >
             {isLoading == true && <ImSpinner10 className="loader-icon" />}

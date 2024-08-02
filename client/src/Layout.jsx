@@ -11,6 +11,8 @@ import DashBoard from "./components/Admin/Content/Dashboard/DashBoard.jsx";
 import Login from "./components/Auth/Login.jsx";
 import Register from "./components/Auth/Register.jsx";
 import ManageUser from "./components/Admin/Content/ManageUsers/ManageUser.jsx";
+import { Suspense } from "react";
+import PrivateRoute from "./routes/PrivateRoute.jsx";
 
 const NotFound = () => {
   return (
@@ -22,40 +24,45 @@ const NotFound = () => {
 
 const Layout = (props) => {
   return (
-    <div className="bg-dark  text-white">
-      <Routes>
-        <Route path="/" element={<Application />}>
-          <Route index element={<Home />} />
-        </Route>
+    <div className="bg-dark text-white">
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Application />}>
+            <Route index element={<Home />} />
+          </Route>
 
-        <Route path="/admin" element={<Admin />}>
-          {/* 3 route dưới là cho AGV */}
-          <Route index element={<DashBoard />} />
+          <Route
+            path="/admin"
+            //tạm tắt private route để xem đc Admin, khi hoàn thành all thì uncomment
+            element={
+              // <PrivateRoute>
+              <Admin />
+              // </PrivateRoute>
+            }
+          >
+            <Route index element={<DashBoard />} />
+            <Route path="manage-orders" element={<ManageOrder />} />
+            <Route path="manage-users" element={<ManageUser />} />
+          </Route>
 
-          <Route path="manage-orders" element={<ManageOrder />} />
-
-          {/* Route dưới là cho Accounts */}
-          <Route path="manage-users" element={<ManageUser />} />
-        </Route>
-
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes>
-
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition:Bounce
-      />
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          transition:Bounce
+        />
+      </Suspense>
     </div>
   );
 };

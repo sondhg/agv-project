@@ -14,7 +14,6 @@ const Header = () => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const account = useSelector((state) => state.user.account);
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -38,10 +37,6 @@ const Header = () => {
   };
 
   console.log("account : ", account, "isAuthenticated: ", isAuthenticated);
-
-  //nghịch
-  const heyyo = account.email;
-  console.log("account email is: ", heyyo);
 
   return (
     <Navbar
