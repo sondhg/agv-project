@@ -3,17 +3,19 @@ import { v4 as uuidv4 } from "uuid";
 
 const postCreateNewOrder = (
   vehicle_id,
-  previous_node,
-  next_node,
+  order_date,
+  from_node,
+  to_node,
   load_amount,
-  quick_note
+  load_name
 ) => {
   const form = new FormData();
   form.append("vehicle_id", vehicle_id);
-  form.append("previous_node", previous_node);
-  form.append("next_node", next_node);
+  form.append("order_date", order_date);
+  form.append("from_node", from_node);
+  form.append("to_node", to_node);
   form.append("load_amount", load_amount);
-  form.append("quick_note", quick_note);
+  form.append("load_name", load_name);
   form.append("is_active", true);
   form.append("connected", true);
   form.append("vehicle_model", "Model X");
@@ -36,19 +38,21 @@ const getAllOrders = () => {
 const putUpdateOrder = (
   id,
   vehicle_id,
-  previous_node,
-  next_node,
+  order_date,
+  from_node,
+  to_node,
   load_amount,
-  quick_note
+  load_name
 ) => {
   const form = new FormData();
   //cần truyền biến id để biết đang xét order nào
   form.append("id", id);
   form.append("vehicle_id", vehicle_id);
-  form.append("previous_node", previous_node);
-  form.append("next_node", next_node);
+  form.append("order_date", order_date);
+  form.append("from_node", from_node);
+  form.append("to_node", to_node);
   form.append("load_amount", load_amount);
-  form.append("quick_note", quick_note);
+  form.append("load_name", load_name);
   form.append("is_active", true);
   form.append("connected", true);
   form.append("vehicle_model", "Model X");
@@ -77,45 +81,6 @@ const getDisplayAgvParams = () => {
   return axios.get("/agv-parameters-display");
 };
 //có thể dùng cho TableDisplayAgvParams, nhưng code cũ chạy ổn r nên thôi
-
-//Phần dưới đây dùng cho User/Account
-const postCreateNewUser = (email, password, name, role) => {
-  const form = new FormData();
-  form.append("id", uuidv4());
-  form.append("email", email);
-  form.append("password", password);
-  form.append("name", name);
-  form.append("role", role);
-
-  return axios.post("/users", form, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-};
-
-const getAllUsers = () => {
-  return axios.get("/users");
-};
-
-const putUpdateUser = (id, password, name, role) => {
-  const form = new FormData();
-  //cần truyền biến id để biết đang xét user nào
-  form.append("id", id);
-  form.append("password", password);
-  form.append("name", name);
-  form.append("role", role);
-
-  return axios.put(`/users/${id}`, form, {
-    headers: {
-      "Content-Type": "application/json", //cần database để sửa, có thể bỏ headers
-    },
-  });
-};
-
-const deleteUser = (userId) => {
-  return axios.delete(`/users/${userId}`, { data: { id: userId } });
-};
 
 //Dưới đây là cho Login
 const postLogin = (userEmail, userPassword) => {
@@ -161,18 +126,8 @@ export {
   proceedOrder,
   getDisplayAgvParams,
 
-  //User
-  postCreateNewUser,
-  getAllUsers,
-  putUpdateUser,
-  deleteUser,
-
-  //Login
+  //Account
   postLogin,
-
-  //Register
   postRegister,
-
-  //Log out
   logout,
 };

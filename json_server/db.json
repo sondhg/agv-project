@@ -1,5 +1,19 @@
 {
-  "orders-draft": [],
+  "orders-draft": [
+    {
+      "id": "cf576b11-0216-4e59-8217-321fd8c4502c",
+      "vehicle_id": "1",
+      "order_date": "8/14/2024",
+      "from_node": "1",
+      "to_node": "4",
+      "load_amount": "2",
+      "load_name": "Cement",
+      "is_active": "true",
+      "connected": "true",
+      "vehicle_model": "Model X",
+      "guidance_type": "Optical Tape"
+    }
+  ],
   "orders-proceeded": [],
   "users": [],
   "login": [],

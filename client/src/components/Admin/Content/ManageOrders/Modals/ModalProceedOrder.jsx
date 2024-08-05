@@ -43,17 +43,15 @@ const ModalProceedOrder = (props) => {
             <li>
               Start point:{" "}
               <b>
-                {dataProceed && dataProceed.previous_node
-                  ? dataProceed.previous_node
+                {dataProceed && dataProceed.from_node
+                  ? dataProceed.from_node
                   : ""}
               </b>{" "}
             </li>
             <li>
               End point:{" "}
               <b>
-                {dataProceed && dataProceed.next_node
-                  ? dataProceed.next_node
-                  : ""}
+                {dataProceed && dataProceed.to_node ? dataProceed.to_node : ""}
               </b>{" "}
             </li>
             <li>
@@ -67,8 +65,8 @@ const ModalProceedOrder = (props) => {
             <li>
               Quick note:{" "}
               <b>
-                {dataProceed && dataProceed.quick_note
-                  ? dataProceed.quick_note
+                {dataProceed && dataProceed.load_name
+                  ? dataProceed.load_name
                   : ""}
               </b>{" "}
             </li>

@@ -38,15 +38,13 @@ const ModalDeleteOrder = (props) => {
             <li>
               Start point:{" "}
               <b>
-                {dataDelete && dataDelete.previous_node
-                  ? dataDelete.previous_node
-                  : ""}
+                {dataDelete && dataDelete.from_node ? dataDelete.from_node : ""}
               </b>{" "}
             </li>
             <li>
               End point:{" "}
               <b>
-                {dataDelete && dataDelete.next_node ? dataDelete.next_node : ""}
+                {dataDelete && dataDelete.to_node ? dataDelete.to_node : ""}
               </b>{" "}
             </li>
             <li>
@@ -60,9 +58,7 @@ const ModalDeleteOrder = (props) => {
             <li>
               Quick note:{" "}
               <b>
-                {dataDelete && dataDelete.quick_note
-                  ? dataDelete.quick_note
-                  : ""}
+                {dataDelete && dataDelete.load_name ? dataDelete.load_name : ""}
               </b>{" "}
             </li>
           </ul>

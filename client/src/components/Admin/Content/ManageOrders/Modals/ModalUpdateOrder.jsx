@@ -4,6 +4,10 @@ import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
 import { putUpdateOrder } from "../../../../../services/apiServices";
 import _ from "lodash";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+const NEW_DATE = new Date();
 
 const ModalUpdateOrder = (props) => {
   const { show, setShow, dataUpdate } = props;
@@ -12,18 +16,22 @@ const ModalUpdateOrder = (props) => {
   const handleClose = () => {
     setShow(false);
     setVehicleId("1");
-    setPreviousNode(1);
-    setNextNode(1);
+    setOriginalDate(NEW_DATE);
+    setOrderDate(NEW_DATE.toLocaleDateString());
+    setFromNode(1);
+    setToNode(1);
     setLoadAmount(0);
-    setQuickNote("");
+    setLoadName("");
     props.resetUpdateData();
   };
 
   const [vehicle_id, setVehicleId] = useState("1");
-  const [previous_node, setPreviousNode] = useState(1);
-  const [next_node, setNextNode] = useState(1);
+  const [from_node, setFromNode] = useState(1);
+  const [to_node, setToNode] = useState(1);
+  const [load_name, setLoadName] = useState("");
   const [load_amount, setLoadAmount] = useState(0);
-  const [quick_note, setQuickNote] = useState("");
+  const [originalDate, setOriginalDate] = useState(NEW_DATE);
+  const [order_date, setOrderDate] = useState(NEW_DATE.toLocaleDateString());
 
   //const [isPending, setIsPending] = useState(false);
 
@@ -31,10 +39,12 @@ const ModalUpdateOrder = (props) => {
     if (!_.isEmpty(dataUpdate)) {
       //Nếu biến dataUpdate ko rỗng thì update state
       setVehicleId(dataUpdate.vehicle_id);
-      setPreviousNode(dataUpdate.previous_node);
-      setNextNode(dataUpdate.next_node);
+      setOriginalDate(dataUpdate.order_date);
+      setOrderDate(dataUpdate.order_date);
+      setFromNode(dataUpdate.from_node);
+      setToNode(dataUpdate.to_node);
       setLoadAmount(dataUpdate.load_amount);
-      setQuickNote(dataUpdate.quick_note);
+      setLoadName(dataUpdate.load_name);
     }
   }, [props.dataUpdate]);
 
@@ -44,10 +54,11 @@ const ModalUpdateOrder = (props) => {
     let data = await putUpdateOrder(
       dataUpdate.id,
       vehicle_id,
-      previous_node,
-      next_node,
+      order_date,
+      from_node,
+      to_node,
       load_amount,
-      quick_note
+      load_name
     );
     if (data) {
       //chưa có validate
@@ -87,12 +98,30 @@ const ModalUpdateOrder = (props) => {
               </select>
             </div>
             <div className="col-md-4">
+              <label className="form-label">
+                Date <i>(month/originalDate/year)</i>
+              </label>
+              <div>
+                <DatePicker
+                  className="form-select"
+                  selected={originalDate}
+                  minDate={NEW_DATE}
+                  dateFormat="MM/dd/yyyy"
+                  onChange={(date) => {
+                    setOriginalDate(date);
+                    // setOrderDate(date.toJSON()); // ! bị chậm theo giờ UTC
+                    setOrderDate(date.toLocaleDateString()); // * đúng theo giờ local
+                  }}
+                />
+              </div>
+            </div>
+            <div className="col-md-4">
               <label className="form-label">Start point</label>
               <select
                 className="form-select"
-                value={previous_node}
+                value={from_node}
                 type="number"
-                onChange={(event) => setPreviousNode(event.target.value)}
+                onChange={(event) => setFromNode(event.target.value)}
               >
                 <option value={1}>1</option>
                 <option value={2}>2</option>
@@ -104,14 +133,28 @@ const ModalUpdateOrder = (props) => {
               <label className="form-label">End point</label>
               <select
                 className="form-select"
-                value={next_node}
+                value={to_node}
                 type="number"
-                onChange={(event) => setNextNode(event.target.value)}
+                onChange={(event) => setToNode(event.target.value)}
               >
                 <option value={1}>1</option>
                 <option value={2}>2</option>
                 <option value={3}>3</option>
                 <option value={4}>4</option>
+              </select>
+            </div>
+            <div className="col-md-4">
+              <label className="form-label">Load name</label>
+              <select
+                className="form-select"
+                value={load_name}
+                type="number"
+                onChange={(event) => setLoadName(event.target.value)}
+              >
+                <option value={"Stone"}>Stone</option>
+                <option value={"Cement"}>Cement</option>
+                <option value={"Steel"}>Steel</option>
+                <option value={"Cotton"}>Cotton</option>
               </select>
             </div>
             <div className="col-md-6">
@@ -121,15 +164,6 @@ const ModalUpdateOrder = (props) => {
                 className="form-control"
                 value={load_amount}
                 onChange={(event) => setLoadAmount(event.target.value)}
-              />
-            </div>
-            <div className="col-md-6">
-              <label className="form-label">Quick note</label>
-              <input
-                type="text"
-                className="form-control"
-                value={quick_note}
-                onChange={(event) => setQuickNote(event.target.value)}
               />
             </div>
           </form>

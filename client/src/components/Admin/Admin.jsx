@@ -13,13 +13,15 @@ const Admin = (props) => {
       </div>
       <div className="admin-content">
         <div className="admin-header">
-          <FaBars className="toggle-sidebar" onClick={() => setCollapsed(!collapsed)} />
+          <FaBars
+            className="toggle-sidebar"
+            onClick={() => setCollapsed(!collapsed)}
+          />
         </div>
         <div className="admin-main">
           <Outlet />
         </div>
       </div>
-      
     </div>
   );
 };

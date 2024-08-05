@@ -9,8 +9,10 @@ const TableOrders = (props) => {
           <tr>
             <th scope="col">Order No.</th>
             <th scope="col">Vehicle ID</th>
-            <th scope="col">Start point</th>
-            <th scope="col">End point</th>
+            <th scope="col">Order date</th>
+            <th scope="col">From node</th>
+            <th scope="col">To node</th>
+            <th scope="col">Load name</th>
             <th scope="col">Load amount</th>
             <th scope="col">Quick note</th>
             <th>Action</th>
@@ -24,10 +26,12 @@ const TableOrders = (props) => {
                 <tr key={`table-orders-${index}`}>
                   <td>{index + 1}</td>
                   <td>{item.vehicle_id}</td>
-                  <td>Node {item.previous_node}</td>
-                  <td>Node {item.next_node}</td>
+                  <td>{item.order_date}</td>
+                  <td>Node {item.from_node}</td>
+                  <td>Node {item.to_node}</td>
+                  <td>{item.load_name}</td>
                   <td>{item.load_amount} kg</td>
-                  <td>{item.quick_note}</td>
+                  <td>{item.load_name}</td>
                   <td>
                     <button
                       className="btn btn-success"
@@ -53,7 +57,7 @@ const TableOrders = (props) => {
             })}
           {listOrders && listOrders.length === 0 && (
             <tr>
-              <td colSpan={"7"}>Data not found</td>
+              <td colSpan={"9"}>Data not found</td>
             </tr>
           )}
         </tbody>

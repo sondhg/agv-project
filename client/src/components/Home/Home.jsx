@@ -48,7 +48,7 @@ const Home = () => {
                   On the left sidebar, select <b>"Orders" → "Manage Orders"</b>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  Click <b>"Add new order"</b>. On the pop-up modal, fill in the
+                  Click <b>"Add order"</b>. On the pop-up modal, fill in the
                   form to select inputs for AGV
                 </ListGroup.Item>
                 <ListGroup.Item>

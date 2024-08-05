@@ -10,7 +10,6 @@ import Admin from "./components/Admin/Admin.jsx";
 import DashBoard from "./components/Admin/Content/Dashboard/DashBoard.jsx";
 import Login from "./components/Auth/Login.jsx";
 import Register from "./components/Auth/Register.jsx";
-import ManageUser from "./components/Admin/Content/ManageUsers/ManageUser.jsx";
 import { Suspense } from "react";
 import PrivateRoute from "./routes/PrivateRoute.jsx";
 
@@ -42,7 +41,6 @@ const Layout = (props) => {
           >
             <Route index element={<DashBoard />} />
             <Route path="manage-orders" element={<ManageOrder />} />
-            <Route path="manage-users" element={<ManageUser />} />
           </Route>
 
           <Route path="/login" element={<Login />}></Route>

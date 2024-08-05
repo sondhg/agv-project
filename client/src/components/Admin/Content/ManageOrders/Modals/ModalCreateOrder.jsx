@@ -4,6 +4,12 @@ import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
 import { postCreateNewOrder } from "../../../../../services/apiServices";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+const NEW_DATE = new Date();
+// console.log("🚀 ~ NEW_DATE:", NEW_DATE);
+// console.log("🚀 ~ NEW_DATE date localized:", NEW_DATE.toLocaleDateString());
 
 const ModalCreateOrder = (props) => {
   const { show, setShow } = props;
@@ -11,22 +17,26 @@ const ModalCreateOrder = (props) => {
   const handleClose = () => {
     setShow(false);
     setVehicleId("1");
-    setPreviousNode(1);
-    setNextNode(1);
+    setOriginalDate(NEW_DATE);
+    setOrderDate(NEW_DATE.toLocaleDateString());
+    setFromNode(1);
+    setToNode(1);
     setLoadAmount(0);
-    setQuickNote("");
+    setLoadName("");
   };
 
   const [vehicle_id, setVehicleId] = useState("1");
-  const [previous_node, setPreviousNode] = useState(1);
-  const [next_node, setNextNode] = useState(1);
-  const [quick_note, setQuickNote] = useState("");
+  const [from_node, setFromNode] = useState(1);
+  const [to_node, setToNode] = useState(1);
+  const [load_name, setLoadName] = useState("");
   const [load_amount, setLoadAmount] = useState(0);
+  const [originalDate, setOriginalDate] = useState(NEW_DATE);
+  const [order_date, setOrderDate] = useState(NEW_DATE.toLocaleDateString());
+
+  console.log("🚀 ~ ModalCreateOrder ~ order_date:", order_date);
 
   const handleSubmitCreateOrder = async () => {
-    //validate: mai làm sau
-
-    if (!quick_note) {
+    if (!load_name) {
       toast.warning("Adding a note is always recommended!");
     }
 
@@ -37,15 +47,14 @@ const ModalCreateOrder = (props) => {
 
     let data = await postCreateNewOrder(
       vehicle_id,
-      previous_node,
-      next_node,
+      order_date,
+      from_node,
+      to_node,
       load_amount,
-      quick_note
+      load_name
     );
 
     if (data) {
-      //chưa có validate
-
       toast.success("Order successfully added!");
       handleClose();
       await props.fetchListOrders();
@@ -54,15 +63,10 @@ const ModalCreateOrder = (props) => {
 
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button> */}
-
       <Modal
         show={show}
         onHide={handleClose}
         size="xl"
-        backdrop="static" //khi bấm Esc hoặc click chuột bên ngoài thì modal ko tắt
         className="modal-add-order"
       >
         <Modal.Header closeButton>
@@ -83,13 +87,32 @@ const ModalCreateOrder = (props) => {
                 <option value="4">4</option>
               </select>
             </div>
+
+            <div className="col-md-4">
+              <label className="form-label">
+                Date <i>(month/originalDate/year)</i>
+              </label>
+              <div>
+                <DatePicker
+                  className="form-select"
+                  selected={originalDate}
+                  minDate={NEW_DATE}
+                  dateFormat="MM/dd/yyyy"
+                  onChange={(date) => {
+                    setOriginalDate(date);
+                    // setOrderDate(date.toJSON()); // ! bị chậm theo giờ UTC
+                    setOrderDate(date.toLocaleDateString()); // * đúng theo giờ local
+                  }}
+                />
+              </div>
+            </div>
             <div className="col-md-4">
               <label className="form-label">Start point</label>
               <select
                 className="form-select"
-                value={previous_node}
+                value={from_node}
                 type="number"
-                onChange={(event) => setPreviousNode(event.target.value)}
+                onChange={(event) => setFromNode(event.target.value)}
               >
                 <option value={1}>1</option>
                 <option value={2}>2</option>
@@ -101,9 +124,9 @@ const ModalCreateOrder = (props) => {
               <label className="form-label">End point</label>
               <select
                 className="form-select"
-                value={next_node}
+                value={to_node}
                 type="number"
-                onChange={(event) => setNextNode(event.target.value)}
+                onChange={(event) => setToNode(event.target.value)}
               >
                 <option value={1}>1</option>
                 <option value={2}>2</option>
@@ -111,31 +134,39 @@ const ModalCreateOrder = (props) => {
                 <option value={4}>4</option>
               </select>
             </div>
+            <div className="col-md-4">
+              <label className="form-label">Load name</label>
+              <select
+                className="form-select"
+                value={load_name}
+                type="number"
+                onChange={(event) => setLoadName(event.target.value)}
+              >
+                <option value={"Stone"}>Stone</option>
+                <option value={"Cement"}>Cement</option>
+                <option value={"Steel"}>Steel</option>
+                <option value={"Cotton"}>Cotton</option>
+              </select>
+            </div>
             <div className="col-md-6">
-              <label className="form-label">Load amount (kilograms)</label>
+              <label className="form-label">
+                Load amount <i>(kilograms)</i>
+              </label>
               <input
                 type="number"
+                min="0"
                 className="form-control"
                 value={load_amount}
                 onChange={(event) => setLoadAmount(event.target.value)}
               />
             </div>
-            <div className="col-md-6">
-              <label className="form-label">Quick note</label>
-              <input
-                type="text"
-                className="form-control"
-                value={quick_note}
-                onChange={(event) => setQuickNote(event.target.value)}
-              />
-            </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={() => handleClose()}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleSubmitCreateOrder}>
+          <Button variant="primary" onClick={() => handleSubmitCreateOrder()}>
             Send to draft
           </Button>
         </Modal.Footer>
