@@ -99,7 +99,7 @@ const ModalUpdateOrder = (props) => {
             </div>
             <div className="col-md-4">
               <label className="form-label">
-                Date <i>(month/originalDate/year)</i>
+                Date <i>(month/date/year)</i>
               </label>
               <div>
                 <DatePicker

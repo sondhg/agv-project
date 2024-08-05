@@ -86,7 +86,7 @@ const ManageOrder = (props) => {
             if (rawCSV[0] && rawCSV[0].length === 3) {
               if (
                 rawCSV[0][0] !== "order_number" ||
-                rawCSV[0][1] !== "originalDate" ||
+                rawCSV[0][1] !== "order_date" ||
                 rawCSV[0][2] !== "load_name" ||
                 rawCSV[0][3] !== "load_amount" ||
                 rawCSV[0][4] !== "start_time" ||
@@ -101,7 +101,7 @@ const ManageOrder = (props) => {
                   if (index > 0 && item.length === 7) {
                     let obj = {};
                     obj.order_number = item[0];
-                    obj.originalDate = item[1];
+                    obj.order_date = item[1];
                     obj.load_name = item[2];
                     obj.load_amount = item[3];
                     obj.start_time = item[4];
