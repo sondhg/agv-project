@@ -14,7 +14,6 @@ const TableOrders = (props) => {
             <th scope="col">To node</th>
             <th scope="col">Load name</th>
             <th scope="col">Load amount</th>
-            <th scope="col">Quick note</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -31,7 +30,6 @@ const TableOrders = (props) => {
                   <td>Node {item.to_node}</td>
                   <td>{item.load_name}</td>
                   <td>{item.load_amount} kg</td>
-                  <td>{item.load_name}</td>
                   <td>
                     <button
                       className="btn btn-success"
