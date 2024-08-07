@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 const postCreateNewOrder = (
   vehicle_id,
   order_date,
+  start_time,
   from_node,
   to_node,
   load_amount,
@@ -12,15 +13,16 @@ const postCreateNewOrder = (
   const form = new FormData();
   form.append("vehicle_id", vehicle_id);
   form.append("order_date", order_date);
+  form.append("start_time", start_time);
   form.append("from_node", from_node);
   form.append("to_node", to_node);
   form.append("load_amount", load_amount);
   form.append("load_name", load_name);
-  form.append("is_active", true);
-  form.append("connected", true);
-  form.append("vehicle_model", "Model X");
-  form.append("guidance_type", "Optical Tape");
-  form.append("id", uuidv4());
+  // form.append("is_active", true);
+  // form.append("connected", true);
+  // form.append("vehicle_model", "Model X");
+  // form.append("guidance_type", "Optical Tape");
+  // form.append("id", uuidv4());
 
   //order-draft là viết tắt của http://localhost:8000/orders-draft nhờ axiosCustomize.jsx
   return axios.post("/orders-draft", form, {
@@ -39,6 +41,7 @@ const putUpdateOrder = (
   id,
   vehicle_id,
   order_date,
+  start_time,
   from_node,
   to_node,
   load_amount,
@@ -49,14 +52,16 @@ const putUpdateOrder = (
   form.append("id", id);
   form.append("vehicle_id", vehicle_id);
   form.append("order_date", order_date);
+  form.append("start_time", start_time);
+
   form.append("from_node", from_node);
   form.append("to_node", to_node);
   form.append("load_amount", load_amount);
   form.append("load_name", load_name);
-  form.append("is_active", true);
-  form.append("connected", true);
-  form.append("vehicle_model", "Model X");
-  form.append("guidance_type", "Optical Tape");
+  // form.append("is_active", true);
+  // form.append("connected", true);
+  // form.append("vehicle_model", "Model X");
+  // form.append("guidance_type", "Optical Tape");
 
   return axios.put(`/orders-draft/${id}`, form, {
     headers: {
@@ -86,11 +91,9 @@ const getDisplayAgvParams = () => {
 const postLogin = (userEmail, userPassword) => {
   return axios.post(
     "/login",
-    // "/posts",
     {
       email: userEmail,
       password: userPassword,
-      // delay: 5000,
     },
     { headers: { "content-type": "application/json" } }
   );

@@ -1,17 +1,44 @@
 {
   "orders-draft": [
     {
-      "id": "cf576b11-0216-4e59-8217-321fd8c4502c",
+      "id": "c408",
       "vehicle_id": "1",
-      "order_date": "8/14/2024",
+      "order_date": "8/7/2024",
+      "start_time": "18:55:07",
       "from_node": "1",
-      "to_node": "4",
-      "load_amount": "2",
-      "load_name": "Cement",
-      "is_active": "true",
-      "connected": "true",
-      "vehicle_model": "Model X",
-      "guidance_type": "Optical Tape"
+      "to_node": "1",
+      "load_amount": "0",
+      "load_name": "Stone"
+    },
+    {
+      "id": "fa11",
+      "vehicle_id": "1",
+      "order_date": "8/8/2024",
+      "start_time": "01:37:11",
+      "from_node": "1",
+      "to_node": "1",
+      "load_amount": "0",
+      "load_name": "Stone"
+    },
+    {
+      "id": "29eb",
+      "vehicle_id": "3",
+      "order_date": "8/8/2024",
+      "start_time": "01:41:21",
+      "from_node": "1",
+      "to_node": "1",
+      "load_amount": "0",
+      "load_name": "Stone"
+    },
+    {
+      "id": "ee97",
+      "vehicle_id": "4",
+      "order_date": "8/8/2024",
+      "start_time": "01:41:21",
+      "from_node": "1",
+      "to_node": "1",
+      "load_amount": "0",
+      "load_name": "Stone"
     }
   ],
   "orders-proceeded": [],

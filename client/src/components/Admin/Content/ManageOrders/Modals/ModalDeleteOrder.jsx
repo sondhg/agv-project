@@ -14,14 +14,14 @@ const ModalDeleteOrder = (props) => {
     if (data) {
       //chưa có validate
 
-      toast.success("Deletion done!");
+      toast.success("Deleted!");
       handleClose();
       await props.fetchListOrders();
     }
   };
   return (
     <>
-      <Modal show={show} onHide={handleClose} backdrop="static">
+      <Modal centered show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Are you sure you want to delete this order?</Modal.Title>
         </Modal.Header>

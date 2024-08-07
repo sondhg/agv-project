@@ -11,9 +11,9 @@ import {
   // Switch,
   // Typography,
 } from "react-pro-sidebar";
-import { FaList, FaGithub } from "react-icons/fa";
+import { FaList } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
-import { MdDashboard, MdManageAccounts } from "react-icons/md";
+import { MdDashboard } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const themes = {
@@ -184,11 +184,6 @@ const SideBar = ({ collapsed }) => {
               <SubMenu icon={<FaList />} label="Orders">
                 <MenuItem component={<Link to="/admin/manage-orders" />}>
                   Manage Orders
-                </MenuItem>
-              </SubMenu>
-              <SubMenu icon={<MdManageAccounts />} label="Users">
-                <MenuItem component={<Link to="/admin/manage-users" />}>
-                  Manage Users
                 </MenuItem>
               </SubMenu>
             </Menu>

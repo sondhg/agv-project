@@ -26,7 +26,7 @@ const ModalProceedOrder = (props) => {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose} backdrop="static">
+      <Modal centered show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Send this order to AGV?</Modal.Title>
         </Modal.Header>
