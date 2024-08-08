@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Login.scss";
 import { useNavigate } from "react-router-dom";
-//import { postLogin } from "../../services/apiServices";
+// import { postLogin } from "../../services/apiServices";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/userAction";
@@ -37,11 +37,11 @@ const Login = (props) => {
     setIsLoading(true);
 
     //submit api
-    let data = await HA_postLogin(email, password);
+    let data = await HA_postLogin(email.trim(), password); //bỏ các dấu space thừa ở đầu và đuôi email
     console.log(">>> check res: ", data);
 
     if (data && data.jwt) {
-      localStorage.setItem("jwt", data.jwt);
+      // localStorage.setItem("jwt", data.jwt);
       dispatch(doLogin(data));
       toast.success("Login successful");
       setIsLoading(false); //phải để dòng này TRÊN dòng navigate

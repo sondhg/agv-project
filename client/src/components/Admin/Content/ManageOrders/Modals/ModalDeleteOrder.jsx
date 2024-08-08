@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { deleteOrder } from "../../../../../services/apiServices";
@@ -28,38 +27,25 @@ const ModalDeleteOrder = (props) => {
         <Modal.Body>
           <ul>
             <li>
-              Vehicle code:{" "}
-              <b>
-                {dataDelete && dataDelete.vehicle_id
-                  ? dataDelete.vehicle_id
-                  : ""}
-              </b>{" "}
+              Vehicle code: <b>{dataDelete.vehicle_id}</b>
             </li>
             <li>
-              Start point:{" "}
-              <b>
-                {dataDelete && dataDelete.from_node ? dataDelete.from_node : ""}
-              </b>{" "}
+              Order date: <b>{dataDelete.order_date}</b>
             </li>
             <li>
-              End point:{" "}
-              <b>
-                {dataDelete && dataDelete.to_node ? dataDelete.to_node : ""}
-              </b>{" "}
+              Start time: <b>{dataDelete.start_time}</b>
             </li>
             <li>
-              Load amount:{" "}
-              <b>
-                {dataDelete && dataDelete.load_amount
-                  ? dataDelete.load_amount
-                  : ""}
-              </b>{" "}
+              From node: <b>{dataDelete.from_node}</b>
             </li>
             <li>
-              Quick note:{" "}
-              <b>
-                {dataDelete && dataDelete.load_name ? dataDelete.load_name : ""}
-              </b>{" "}
+              To node: <b>{dataDelete.to_node}</b>
+            </li>
+            <li>
+              Load name: <b>{dataDelete.load_name}</b>
+            </li>
+            <li>
+              Load amount: <b>{dataDelete.load_amount}</b>
             </li>
           </ul>
         </Modal.Body>

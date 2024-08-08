@@ -3,6 +3,11 @@
     .btn-add-new {
       margin: 15px 0;
     }
+
+    .table-orders-container {
+      width: inherit;
+      overflow-x: auto;
+    }
   }
 
   .title {

@@ -1,6 +1,5 @@
 import Table from "react-bootstrap/Table";
 import "./TableOrders.scss";
-import { TbArrowsSort } from "react-icons/tb";
 import { FaLongArrowAltUp } from "react-icons/fa";
 import { FaLongArrowAltDown } from "react-icons/fa";
 import { useState } from "react";
@@ -18,7 +17,7 @@ const TableOrders = (props) => {
     let cloneListOrders = _.cloneDeep(listOrders);
     cloneListOrders = _.orderBy(cloneListOrders, [sortField], [sortBy]);
     setListOrders(cloneListOrders);
-    console.log(cloneListOrders);
+    // console.log(">>> cloneListOrders: ", cloneListOrders);
   };
 
   return (
@@ -55,14 +54,6 @@ const TableOrders = (props) => {
             <th scope="col">
               <div className="sort-header">
                 <span>Order date</span>
-                <span>
-                  <i onClick={() => handleSort("desc", "order_date")}>
-                    <FaLongArrowAltDown />
-                  </i>
-                  <i onClick={() => handleSort("asc", "order_date")}>
-                    <FaLongArrowAltUp />
-                  </i>
-                </span>
               </div>
             </th>
             <th scope="col">
@@ -101,7 +92,7 @@ const TableOrders = (props) => {
                   <td>{item.load_amount} kg</td>
                   <td>
                     <button
-                      className="btn btn-success"
+                      className="btn btn-outline-success"
                       onClick={() => props.handleClickBtnProceed(item)}
                     >
                       Proceed

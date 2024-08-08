@@ -9,7 +9,7 @@ const instance = axios.create({
 // Add a request interceptor
 instance.interceptors.request.use(
   function (config) {
-    console.log(">>> check store: ", store.getState());
+    // console.log(">>> check store: ", store.getState());
     const jwt = store?.getState()?.user?.account?.jwt;
     config.headers["Authorization"] = `Bearer ${jwt}`;
     // Do something before request is sent

@@ -33,42 +33,26 @@ const ModalProceedOrder = (props) => {
         <Modal.Body>
           <ul>
             <li>
-              Vehicle code:{" "}
-              <b>
-                {dataProceed && dataProceed.vehicle_id
-                  ? dataProceed.vehicle_id
-                  : ""}
-              </b>{" "}
+              Vehicle code: <b>{dataProceed.vehicle_id}</b>
             </li>
             <li>
-              Start point:{" "}
-              <b>
-                {dataProceed && dataProceed.from_node
-                  ? dataProceed.from_node
-                  : ""}
-              </b>{" "}
+              Order date: <b>{dataProceed.order_date}</b>
             </li>
             <li>
-              End point:{" "}
-              <b>
-                {dataProceed && dataProceed.to_node ? dataProceed.to_node : ""}
-              </b>{" "}
+              Start time: <b>{dataProceed.start_time}</b>
             </li>
             <li>
-              Load amount:{" "}
-              <b>
-                {dataProceed && dataProceed.load_amount
-                  ? dataProceed.load_amount
-                  : ""}
-              </b>{" "}
+              From node: <b>{dataProceed.from_node}</b>
             </li>
             <li>
-              Quick note:{" "}
-              <b>
-                {dataProceed && dataProceed.load_name
-                  ? dataProceed.load_name
-                  : ""}
-              </b>{" "}
+              To node:
+              <b>{dataProceed.to_node}</b>
+            </li>
+            <li>
+              Load name: <b>{dataProceed.load_name}</b>
+            </li>
+            <li>
+              Load amount: <b>{dataProceed.load_amount}</b>
             </li>
           </ul>
         </Modal.Body>

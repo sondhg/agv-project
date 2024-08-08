@@ -166,18 +166,13 @@ const SideBar = ({ collapsed }) => {
               </Typography> */}
             </div>
             <Menu menuItemStyles={menuItemStyles}>
-              <MenuItem component={<Link to="/" />}>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <FaHome />
-                  <span className="ms-2">
-                    <b>Back to Home</b>
-                  </span>
-                </div>
+              <MenuItem icon={<FaHome />} component={<Link to="/" />}>
+                Home
               </MenuItem>
               <MenuItem
                 icon={<MdDashboard />}
                 component={<Link to="/admin" />}
-                //suffix={<span className="badge red">New</span>}
+                // suffix={<span className="badge red">New</span>}
               >
                 Dashboard
               </MenuItem>

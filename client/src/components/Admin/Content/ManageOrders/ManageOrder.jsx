@@ -13,15 +13,12 @@ import ModalProceedOrder from "./Modals/ModalProceedOrder";
 import { CSVLink } from "react-csv";
 import { FcPlus } from "react-icons/fc";
 import { FaFileExport } from "react-icons/fa";
-import { FaFileImport } from "react-icons/fa";
 import { FcIdea } from "react-icons/fc";
 import Button from "react-bootstrap/esm/Button";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Stack from "react-bootstrap/Stack";
-import handleImportCSV from "../../../../services/csvImportServices";
 import ModalCsvGuide from "./Modals/ModalCsvGuide";
+import _ from "lodash";
+import { debounce } from "lodash";
 
 const ManageOrder = (props) => {
   const [showModalCreateOrder, setShowModalCreateOrder] = useState(false);
@@ -41,7 +38,7 @@ const ManageOrder = (props) => {
 
   const fetchListOrders = async () => {
     let res = await getAllOrders();
-    console.log(">>> res: ", res);
+    // console.log(">>> res: ", res);
     setListOrders(res); //xem database để đặt thêm sau res
   };
 
@@ -107,6 +104,21 @@ const ManageOrder = (props) => {
     }
   };
 
+  const handleSearch = debounce((event) => {
+    let term = event.target.value;
+    if (term) {
+      let cloneListOrders = _.cloneDeep(listOrders);
+      cloneListOrders = cloneListOrders.filter((item) =>
+        item.order_date.includes(term)
+      );
+      setListOrders(cloneListOrders);
+    } else {
+      fetchListOrders();
+    }
+  }, 500);
+
+  console.log(">>> listOrders: ", listOrders);
+
   return (
     <div className="manage-order-container">
       <h3>Manage Orders</h3>
@@ -124,10 +136,18 @@ const ManageOrder = (props) => {
               </div>
             </Button>
           </div>
+          <div className="p-2 ">
+            <Button variant="info" size="lg" onClick={() => setShowModalCsvGuide(true)}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <FcIdea size={25} />
+                <span className="ms-2">Import CSV</span>
+              </div>
+            </Button>
+          </div>
           <div className="p-2">
             <CSVLink
               filename={"orders_export.csv"}
-              className="btn btn-primary"
+              className="btn btn-primary btn-lg"
               data={dataExport}
               asyncOnClick={true}
               onClick={(event, done) => getOrdersExport(event, done)}
@@ -138,29 +158,13 @@ const ManageOrder = (props) => {
               </div>
             </CSVLink>
           </div>
-          <div className="p-2">
-            <label htmlFor="import-csv" className="btn btn-warning">
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <FaFileImport size={20} />
-                <span className="ms-2">Import CSV</span>
-              </div>
-            </label>
+          <div className="ms-auto col-12 col-sm-4 my-3">
             <input
-              id="import-csv"
-              type="file"
-              hidden
-              onChange={(event) => {
-                handleImportCSV(event);
-              }}
+              className="form-control"
+              placeholder="Search order by date"
+              // value={keyword}
+              onChange={(event) => handleSearch(event)}
             />
-          </div>
-          <div className="p-2 ms-auto">
-            <Button variant="info" onClick={() => setShowModalCsvGuide(true)}>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <FcIdea size={25} />
-                <span className="ms-2">Guide on import CSV</span>
-              </div>
-            </Button>
           </div>
         </Stack>
 

@@ -6,7 +6,10 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import { toast } from "react-toastify";
-import { putUpdateOrder } from "../../../../../services/apiServices";
+import {
+  putUpdateOrder,
+  putEditOrder,
+} from "../../../../../services/apiServices";
 import _ from "lodash";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,6 +18,7 @@ import {
   loadNames,
   startPoints,
   endPoints,
+  vehicleIDs,
 } from "../../../../../utils/arraysUsedOften";
 
 const NEW_DATE = new Date();
@@ -25,7 +29,7 @@ const ModalUpdateOrder = (props) => {
 
   const handleClose = () => {
     setShow(false);
-    setVehicleId("1");
+    setVehicleId(vehicleIDs[0]);
     setOriginalDate(NEW_DATE);
     setOrderDate(NEW_DATE.toLocaleDateString());
     setStartTime(
@@ -38,16 +42,16 @@ const ModalUpdateOrder = (props) => {
     );
     setFromNode(startPoints[0]);
     setToNode(endPoints[0]);
-    setLoadAmount(0);
+    setLoadAmount("0");
     setLoadName(loadNames[0]);
     props.resetUpdateData();
   };
 
-  const [vehicle_id, setVehicleId] = useState("1");
+  const [vehicle_id, setVehicleId] = useState(vehicleIDs[0]);
   const [from_node, setFromNode] = useState(startPoints[0]);
   const [to_node, setToNode] = useState(endPoints[0]);
   const [load_name, setLoadName] = useState(loadNames[0]);
-  const [load_amount, setLoadAmount] = useState(0);
+  const [load_amount, setLoadAmount] = useState("0");
   const [originalDate, setOriginalDate] = useState(NEW_DATE);
   const [order_date, setOrderDate] = useState(NEW_DATE.toLocaleDateString());
   const [start_time, setStartTime] = useState(
@@ -74,21 +78,32 @@ const ModalUpdateOrder = (props) => {
   }, [props.dataUpdate]);
 
   const handleSubmitCreateOrder = async () => {
-    //validate: mai làm sau
-
-    let data = await putUpdateOrder(
-      dataUpdate.id,
-      vehicle_id,
+    let orderWithID = {
+      id: dataUpdate.id,
+      vehicle_id, // * code tắt của vehicle_id: vehicle_id
       order_date,
       start_time,
       from_node,
       to_node,
       load_amount,
-      load_name
-    );
+      load_name,
+    };
+
+    let data = await putEditOrder(orderWithID);
+
+    // let data = await putUpdateOrder(
+    //   dataUpdate.id,
+    //   vehicle_id,
+    //   order_date,
+    //   start_time,
+    //   from_node,
+    //   to_node,
+    //   load_amount,
+    //   load_name
+    // );
+
     if (data) {
       //chưa có validate
-
       toast.success("Update succeeded!");
       handleClose();
       await props.fetchListOrders();
@@ -102,7 +117,6 @@ const ModalUpdateOrder = (props) => {
         show={show}
         onHide={handleClose}
         size="xl"
-        backdrop="static" //khi bấm Esc hoặc click chuột bên ngoài thì modal ko tắt
         className="modal-add-order"
       >
         <Modal.Header closeButton>
@@ -118,10 +132,11 @@ const ModalUpdateOrder = (props) => {
                     value={vehicle_id}
                     onChange={(event) => setVehicleId(event.target.value)}
                   >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
+                    {vehicleIDs.map((item) => (
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
+                    ))}
                   </Form.Select>
                 </Col>
                 <Col md={6}>
@@ -167,8 +182,10 @@ const ModalUpdateOrder = (props) => {
                     type="number"
                     onChange={(event) => setFromNode(event.target.value)}
                   >
-                    {startPoints.map((startPoint) => (
-                      <option value={startPoint}>{startPoint}</option>
+                    {startPoints.map((item) => (
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
                     ))}
                   </Form.Select>
                 </Col>
@@ -179,8 +196,10 @@ const ModalUpdateOrder = (props) => {
                     type="number"
                     onChange={(event) => setToNode(event.target.value)}
                   >
-                    {endPoints.map((endPoint) => (
-                      <option value={endPoint}>{endPoint}</option>
+                    {endPoints.map((item) => (
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
                     ))}
                   </Form.Select>
                 </Col>
@@ -193,8 +212,10 @@ const ModalUpdateOrder = (props) => {
                     type="number"
                     onChange={(event) => setLoadName(event.target.value)}
                   >
-                    {loadNames.map((loadName) => (
-                      <option value={loadName}>{loadName}</option>
+                    {loadNames.map((item) => (
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
                     ))}
                   </Form.Select>
                 </Col>

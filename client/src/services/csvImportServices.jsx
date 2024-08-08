@@ -1,7 +1,6 @@
 import { toast } from "react-toastify";
-import { postCreateNewOrder } from "./apiServices";
+import { postAddOrder, postCreateNewOrder } from "./apiServices";
 import Papa from "papaparse";
-import { useEffect } from "react";
 
 const handleImportCSV = (event) => {
   if (event.target && event.target.files && event.target.files[0]) {
@@ -48,15 +47,16 @@ const handleImportCSV = (event) => {
               // setListOrders(result);
 
               result.map((item, index) => {
-                postCreateNewOrder(
-                  item.vehicle_id,
-                  item.order_date,
-                  item.start_time,
-                  item.from_node,
-                  item.to_node,
-                  item.load_amount,
-                  item.load_name
-                );
+                postAddOrder(item);
+                // postCreateNewOrder(
+                //   item.vehicle_id,
+                //   item.order_date,
+                //   item.start_time,
+                //   item.from_node,
+                //   item.to_node,
+                //   item.load_amount,
+                //   item.load_name
+                // );
               });
             }
           } else {
