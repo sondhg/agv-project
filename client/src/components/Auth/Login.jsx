@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/userAction";
 import { ImSpinner10 } from "react-icons/im";
+import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import { HA_postLogin } from "../../services/HA_apiServices";
 
 const Login = (props) => {
@@ -14,6 +15,7 @@ const Login = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
+  const [isShowPassword, setIsShowPassword] = useState(false); //biểu tượng con mắt
 
   const validateEmail = (email) => {
     return String(email)
@@ -82,17 +84,28 @@ const Login = (props) => {
             onChange={(event) => setEmail(event.target.value)}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group pass-group">
           <label>Password</label>
           <input
-            type={"password"}
+            type={isShowPassword ? "text" : "password"}
             className="form-control"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             onKeyDown={(event) => handleKeyDown(event)}
           />
+          {isShowPassword ? (
+            <span
+              className="icons-eye"
+              onClick={() => setIsShowPassword(false)}
+            >
+              <VscEye />
+            </span>
+          ) : (
+            <span className="icons-eye" onClick={() => setIsShowPassword(true)}>
+              <VscEyeClosed />
+            </span>
+          )}
         </div>
-        <span className="forgot-password">Forgot password?</span>
         <div>
           <button
             className="btn-submit"
