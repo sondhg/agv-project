@@ -2,22 +2,6 @@
   "orders-draft": [],
   "orders-proceeded": [],
   "users": [],
-  "login": [
-    {
-      "id": "9002",
-      "email": "s@gmail.com",
-      "password": "lol"
-    },
-    {
-      "id": "77fb",
-      "email": "s@funk.com",
-      "password": "lolzlz"
-    },
-    {
-      "id": "bc99",
-      "email": "jack@gmail.com",
-      "password": "dit"
-    }
-  ],
+  "login": [],
   "register": []
 }

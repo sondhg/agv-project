@@ -119,6 +119,7 @@ const ManageOrder = (props) => {
 
   console.log(">>> listOrders: ", listOrders);
 
+  // console.log(">>> a: ", a); //*dòng này dùng test lỗi: code sai thay vì nát UI thì sẽ đẩy sang fallback UI nhờ react-error-boundary
   return (
     <div className="manage-order-container">
       <h3>Manage Orders</h3>
@@ -137,7 +138,11 @@ const ManageOrder = (props) => {
             </Button>
           </div>
           <div className="p-2 ">
-            <Button variant="info" size="lg" onClick={() => setShowModalCsvGuide(true)}>
+            <Button
+              variant="info"
+              size="lg"
+              onClick={() => setShowModalCsvGuide(true)}
+            >
               <div style={{ display: "flex", alignItems: "center" }}>
                 <FcIdea size={25} />
                 <span className="ms-2">Import CSV</span>
